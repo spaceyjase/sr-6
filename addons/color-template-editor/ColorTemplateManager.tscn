@@ -1,0 +1,55 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://addons/color-template-editor/ColorTemplateManager.gd" type="Script" id=1]
+
+[node name="ColorTemplateManager" type="MarginContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_right = 1024.0
+margin_bottom = 600.0
+custom_constants/separation = 0
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+margin_right = 1024.0
+margin_bottom = 14.0
+text = "Color list (copy your colors from Lospec.com and paste here):"
+
+[node name="ColorList" type="TextEdit" parent="VBoxContainer"]
+margin_top = 14.0
+margin_right = 1024.0
+margin_bottom = 580.0
+rect_min_size = Vector2( 600, 128 )
+size_flags_vertical = 3
+custom_colors/member_variable_color = Color( 0, 0, 0, 1 )
+custom_colors/selection_color = Color( 0, 0, 0, 1 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 580.0
+margin_right = 1024.0
+margin_bottom = 600.0
+
+[node name="ToPickerButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+modulate = Color( 0.992157, 0.796078, 0.690196, 1 )
+margin_right = 510.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+text = "Update Picker"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FromPickerButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+margin_left = 514.0
+margin_right = 1024.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+text = "Load from Picker"
+__meta__ = {
+"_edit_use_anchors_": false
+}
