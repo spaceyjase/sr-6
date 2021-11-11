@@ -1,10 +1,10 @@
 using System;
+using Godot;
 
 namespace StateMachine
 {
-  public class State
+  public class State : Node
   {
-    public string Name { get; set; }
     public Action OnProcess { get; set; }
     public Action OnPhysicsProcess { get; set; }
     public Action OnEnter { get; set; }
