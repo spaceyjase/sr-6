@@ -3,13 +3,11 @@ using StateMachine;
 
 namespace Player.States
 {
-  public class DeadState : State
+  public class DeadState : PlayerState
   {
     public override void _Ready()
     {
       base._Ready();
-
-      OnProcess += () => { GD.Print(Name); };
     }
   }
 }

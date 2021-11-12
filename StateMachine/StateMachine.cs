@@ -23,6 +23,7 @@ namespace StateMachine
           InitialState = state;
         }
         states[state.Name] = state;
+        state.StateMachine = this;
       }
     }
 
@@ -41,7 +42,7 @@ namespace StateMachine
         ChangeState(InitialState);
       }
 
-      CurrentState.OnProcess?.Invoke();
+      CurrentState.OnProcess?.Invoke(delta);
     }
 
     public override void _PhysicsProcess(float delta)
@@ -59,7 +60,7 @@ namespace StateMachine
         ChangeState(InitialState);
       }
 
-      CurrentState.OnPhysicsProcess?.Invoke();
+      CurrentState.OnPhysicsProcess?.Invoke(delta);
     }
 
     private void ChangeState(State newState)
@@ -79,7 +80,7 @@ namespace StateMachine
       newState.OnEnter?.Invoke();
     }
     
-    private void ChangeState(string name)
+    public void ChangeState(string name)
     {
       if (states.ContainsKey(name) == false)
       {
@@ -88,6 +89,13 @@ namespace StateMachine
       }
 
       ChangeState(states[name]);
+    }
+
+    public override void _UnhandledInput(InputEvent @event)
+    {
+      base._UnhandledInput(@event);
+
+      CurrentState?.OnInput?.Invoke(@event);
     }
   }
 }
