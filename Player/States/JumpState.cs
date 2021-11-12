@@ -41,7 +41,7 @@ namespace Player.States
 
       if (player.IsOnFloor())
       {
-        StateMachine?.ChangeState("Idle");
+        StateMachine?.ChangeState(Mathf.IsEqualApprox(0f, direction) ? "Idle" : "Run");
         // TODO: particles
       }
     }
