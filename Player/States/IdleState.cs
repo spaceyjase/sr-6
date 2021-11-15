@@ -20,6 +20,7 @@ namespace Player.States
     private void PhysicsProcess(float delta)
     {
       var velocity = player.Velocity;
+      velocity.x = 0;
       velocity.y += player.Gravity * delta;
       
       if (!player.IsOnFloor())
@@ -31,7 +32,7 @@ namespace Player.States
 
       var right = Input.IsActionPressed("right");
       var left = Input.IsActionPressed("left");
-      var jump = Input.IsActionPressed("jump");
+      var jump = Input.IsActionJustPressed("jump");
 
       if (left || right)
       {

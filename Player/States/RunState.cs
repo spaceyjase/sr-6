@@ -19,7 +19,7 @@ namespace Player.States
     {
       if (!player.IsOnFloor())
       {
-        StateMachine?.ChangeState("Jump"); // TODO: air/falling
+        StateMachine?.ChangeState("Jump");
       }
 
       var direction = Input.GetActionStrength("right") - Input.GetActionStrength("left");
@@ -28,7 +28,7 @@ namespace Player.States
       velocity.y += player.Gravity * delta;
       player.Move(velocity);
 
-      if (Input.IsActionPressed("jump"))
+      if (Input.IsActionJustPressed("jump"))
       {
         StateMachine?.ChangeState("Jump");
       }

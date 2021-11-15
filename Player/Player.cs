@@ -8,6 +8,7 @@ namespace Player
     [Export] private float runSpeed = 150;
     [Export] private float gravity = 750;
     [Export] private float jumpSpeed = -305;
+    [Export] private int maxJumps = 1;
     
     private AnimationPlayer animationPlayer;
     
@@ -30,6 +31,8 @@ namespace Player
     public float Speed { get; private set; }
     public float Gravity { get; private set; }
     public float JumpSpeed { get; private set; }
+    public int JumpCount { get; set; }
+    public int MaxJumps { get; private set; }
 
     public override void _Ready()
     {
@@ -41,6 +44,7 @@ namespace Player
       Speed = runSpeed;
       Gravity = gravity;
       JumpSpeed = jumpSpeed;
+      MaxJumps = maxJumps;
     }
 
     public void Move(Vector2 velocity)

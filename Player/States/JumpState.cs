@@ -1,5 +1,4 @@
 using Godot;
-using StateMachine;
 
 namespace Player.States
 {
@@ -11,26 +10,33 @@ namespace Player.States
 
       OnEnter += () =>
       {
-        player.Animation = "jump_up";
-        var velocity = player.Velocity;
-        velocity.y = player.JumpSpeed;
-        player.Velocity = velocity;
+        if (!player.IsOnFloor())
+        {
+          player.JumpCount++;
+        }
       };
       OnPhysicsProcess += PhysicsProcess;
+      OnExit += () => { player.JumpCount = 0; };
     }
 
     private void PhysicsProcess(float delta)
     {
       var direction = Input.GetActionStrength("right") - Input.GetActionStrength("left");
-      var jump = Input.IsActionPressed("jump");
-
       var velocity = player.Velocity;
+      velocity.x = player.Speed * direction;
       velocity.y += player.Gravity * delta;
 
-      if (jump) // TODO: double jump
+      if (player.IsOnFloor())
       {
-        velocity.x = player.Speed * direction;
-        velocity.y = player.JumpSpeed / 1.5f;
+        velocity.y = player.JumpSpeed;
+        player.Animation = "jump_up";
+        player.JumpCount++;
+      }
+      else if (player.JumpCount < player.MaxJumps && Input.IsActionJustPressed("jump"))
+      {
+        velocity.y = player.JumpSpeed;
+        player.Animation = "jump_up";
+        player.JumpCount++;
       }
       player.Move(velocity);
 
