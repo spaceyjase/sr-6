@@ -1,0 +1,250 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Assets/Textures/tiles.png" type="Texture" id=1]
+
+[node name="WorldBlue" type="Node2D"]
+
+[node name="Blank" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 8, 8 )
+
+[node name="Blank2" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 8, 0, 8, 8 )
+
+[node name="Blank3" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 16, 0, 8, 8 )
+
+[node name="Blank4" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 24, 0, 8, 8 )
+
+[node name="Water" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 32, 0, 8, 8 )
+
+[node name="Water2" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 40, 0, 8, 8 )
+
+[node name="Water3" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 48, 0, 8, 8 )
+
+[node name="Rock" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 56, 0, 8, 8 )
+
+[node name="Rock2" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 64, 0, 8, 8 )
+
+[node name="Rock3" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 72, 0, 8, 8 )
+
+[node name="Rock4" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 80, 0, 8, 8 )
+
+[node name="Rock5" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 128, 0, 8, 8 )
+
+[node name="Rock6" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 152, 0, 8, 8 )
+
+[node name="Floor" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 0, 8, 8, 8 )
+
+[node name="Floor2" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 8, 8, 8, 8 )
+
+[node name="Floor3" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 16, 8, 8, 8 )
+
+[node name="Floor4" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 24, 8, 8, 8 )
+
+[node name="Floor5" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 80, 8, 8, 8 )
+
+[node name="Floor6" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 88, 8, 8, 8 )
+
+[node name="Floor7" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 8, 16, 8, 8 )
+
+[node name="Floor8" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 16, 16, 8, 8 )
+
+[node name="Floor9" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 24, 16, 8, 8 )
+
+[node name="Wall" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 32, 8, 8, 8 )
+
+[node name="Wall2" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 40, 8, 8, 8 )
+
+[node name="Wall3" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 48, 8, 8, 8 )
+
+[node name="Wall4" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 56, 8, 8, 8 )
+
+[node name="Wall5" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 64, 8, 8, 8 )
+
+[node name="Wall6" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 72, 8, 8, 8 )
+
+[node name="Pipe" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 128, 8, 8, 8 )
+
+[node name="Pipe2" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 136, 8, 8, 8 )
+
+[node name="Pipe3" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 144, 8, 8, 8 )
+
+[node name="Pipe4" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 152, 8, 8, 8 )
+
+[node name="Pipe5" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 128, 16, 8, 8 )
+
+[node name="Pipe6" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 136, 16, 8, 8 )
+
+[node name="Pipe7" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 144, 16, 8, 8 )
+
+[node name="Pipe8" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 152, 16, 8, 8 )
+
+[node name="Pipe9" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 120, 0, 8, 8 )
+
+[node name="Pipe10" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 120, 8, 8, 8 )
+
+[node name="Pipe11" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 120, 16, 8, 8 )
+
+[node name="Block" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 96, 16, 8, 8 )
+
+[node name="LargeBlock" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 104, 8, 16, 16 )
+
+[node name="Edge" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 88, 0, 8, 8 )
+
+[node name="Edge2" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 96, 0, 8, 8 )
+
+[node name="Edge3" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 104, 0, 8, 8 )
+
+[node name="Edge4" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 112, 0, 8, 8 )
+
+[node name="Edge5" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 32, 16, 8, 8 )
+
+[node name="Edge6" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 40, 16, 8, 8 )
+
+[node name="Edge7" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 136, 0, 8, 8 )
+
+[node name="Edge8" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 144, 0, 8, 8 )
