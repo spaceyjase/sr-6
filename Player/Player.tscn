@@ -115,10 +115,9 @@ collision_mask = 13
 script = ExtResource( 8 )
 
 [node name="Sprite" type="Sprite" parent="."]
-self_modulate = Color( 0.973333, 0.92, 0.925882, 1 )
 texture = ExtResource( 1 )
+offset = Vector2( 0, -4.5 )
 hframes = 15
-frame = 7
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "idle"
@@ -129,7 +128,7 @@ anims/jump_up = SubResource( 6 )
 anims/run = SubResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -0.5, 1 )
+position = Vector2( -0.5, -4 )
 shape = SubResource( 1 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
