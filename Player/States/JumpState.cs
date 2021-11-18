@@ -4,16 +4,16 @@ namespace Player.States
 {
   public class JumpState : PlayerState
   {
+    private Timer coyoteTimer;
     public override void _Ready()
     {
       base._Ready();
+      
+      coyoteTimer = GetNode<Timer>("CoyoteTimer");
 
       OnEnter += () =>
       {
-        if (!player.IsOnFloor())
-        {
-          player.JumpCount++;
-        }
+        coyoteTimer.Start();
       };
       OnPhysicsProcess += PhysicsProcess;
       OnExit += () => { player.JumpCount = 0; };
@@ -24,7 +24,10 @@ namespace Player.States
       var direction = Input.GetActionStrength("right") - Input.GetActionStrength("left");
       var velocity = player.Velocity;
       velocity.x = player.Speed * direction;
-      velocity.y += player.Gravity * delta;
+      if (coyoteTimer.IsStopped())
+      {
+        velocity.y += player.Gravity * delta;
+      }
 
       if (player.IsOnFloor())
       {

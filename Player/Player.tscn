@@ -150,6 +150,10 @@ script = ExtResource( 4 )
 [node name="Jump" type="Node" parent="StateMachine"]
 script = ExtResource( 7 )
 
+[node name="CoyoteTimer" type="Timer" parent="StateMachine/Jump"]
+wait_time = 0.1
+one_shot = true
+
 [node name="Hurt" type="Node" parent="StateMachine"]
 script = ExtResource( 6 )
 
