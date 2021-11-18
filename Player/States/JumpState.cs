@@ -5,11 +5,14 @@ namespace Player.States
   public class JumpState : PlayerState
   {
     private Timer coyoteTimer;
+    private Timer jumpTimer;
+    
     public override void _Ready()
     {
       base._Ready();
       
       coyoteTimer = GetNode<Timer>("CoyoteTimer");
+      jumpTimer = GetNode<Timer>("JumpTimer");
 
       OnEnter += () =>
       {
@@ -28,6 +31,12 @@ namespace Player.States
       {
         velocity.y += player.Gravity * delta;
       }
+      
+      var jump = Input.IsActionJustPressed("jump");
+      if (jump)
+      {
+        jumpTimer.Start();
+      }
 
       if (player.IsOnFloor())
       {
@@ -35,7 +44,7 @@ namespace Player.States
         player.Animation = "jump_up";
         player.JumpCount++;
       }
-      else if (player.JumpCount < player.MaxJumps && Input.IsActionJustPressed("jump"))
+      else if (player.JumpCount < player.MaxJumps && jump)
       {
         velocity.y = player.JumpSpeed;
         player.Animation = "jump_up";
@@ -48,7 +57,7 @@ namespace Player.States
         player.Animation = "jump_down";
       }
 
-      if (player.IsOnFloor())
+      if (player.IsOnFloor() && jumpTimer.IsStopped())
       {
         StateMachine?.ChangeState(Mathf.IsEqualApprox(0f, direction) ? "Idle" : "Run");
         // TODO: particles
