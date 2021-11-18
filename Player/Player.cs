@@ -9,17 +9,19 @@ namespace Player
     [Export] private float gravity = 750;
     [Export] private float jumpSpeed = -305;
     [Export] private int maxJumps = 1;
-    
+
     private AnimationPlayer animationPlayer;
-    
+    private Camera2D camera;
+
     private string animation;
+
     public string Animation
     {
       get => animation;
       set
       {
         if (animation == value) return;
-        
+
         animation = value;
         animationPlayer.Play(animation);
       }
@@ -37,10 +39,11 @@ namespace Player
     public override void _Ready()
     {
       base._Ready();
-      
-      animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
-      sprite = GetNode<Sprite>("Sprite");
-      
+
+      animationPlayer = GetNode<AnimationPlayer>(nameof(AnimationPlayer));
+      sprite = GetNode<Sprite>(nameof(Sprite));
+      camera = GetNode<Camera2D>(nameof(Camera2D));
+
       Speed = runSpeed;
       Gravity = gravity;
       JumpSpeed = jumpSpeed;
@@ -60,6 +63,14 @@ namespace Player
       }
 
       Velocity = MoveAndSlide(velocity, Vector2.Up);
+    }
+
+    public void SetCameraLimits(Rect2 mapSize, Vector2 cellSize)
+    {
+      camera.LimitLeft = (int)((mapSize.Position.x - 1) * cellSize.x);
+      camera.LimitRight = (int)((mapSize.End.x + 1) * cellSize.x);
+      camera.LimitBottom = (int)((mapSize.End.y + 1) * cellSize.y);
+      camera.LimitTop = (int)((mapSize.Position.y - 1) * cellSize.y);
     }
   }
 }
