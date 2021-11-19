@@ -10,6 +10,7 @@ namespace Player
     [Export] private float jumpSpeed = -305;
     [Export] private int maxJumps = 1;
 
+    private Timer coyoteTimer;
     private AnimationPlayer animationPlayer;
     private Camera2D camera;
 
@@ -35,6 +36,7 @@ namespace Player
     public float JumpSpeed { get; private set; }
     public int JumpCount { get; set; }
     public int MaxJumps { get; private set; }
+    public bool InCoyoteTime => !coyoteTimer.IsStopped();
 
     public override void _Ready()
     {
@@ -43,6 +45,8 @@ namespace Player
       animationPlayer = GetNode<AnimationPlayer>(nameof(AnimationPlayer));
       sprite = GetNode<Sprite>(nameof(Sprite));
       camera = GetNode<Camera2D>(nameof(Camera2D));
+      
+      coyoteTimer = GetNode<Timer>("CoyoteTimer");
 
       Speed = runSpeed;
       Gravity = gravity;
@@ -72,5 +76,9 @@ namespace Player
       camera.LimitBottom = (int)((mapSize.End.y + 1) * cellSize.y);
       camera.LimitTop = (int)((mapSize.Position.y - 1) * cellSize.y);
     }
+
+    public void StartCoyoteTimer() => coyoteTimer.Start();
+
+    public void CancelCoyoteTime() => coyoteTimer.Stop();
   }
 }

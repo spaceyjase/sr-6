@@ -23,12 +23,12 @@ namespace Player.States
       velocity.x = 0;
       velocity.y += player.Gravity * delta;
       
+      player.Move(velocity);
+      
       if (!player.IsOnFloor())
       {
         StateMachine?.ChangeState("Jump"); // TODO: air/falling
       }
-      
-      player.Move(velocity);
 
       var right = Input.IsActionPressed("right");
       var left = Input.IsActionPressed("left");

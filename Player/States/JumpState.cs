@@ -4,20 +4,14 @@ namespace Player.States
 {
   public class JumpState : PlayerState
   {
-    private Timer coyoteTimer;
     private Timer jumpTimer;
     
     public override void _Ready()
     {
       base._Ready();
       
-      coyoteTimer = GetNode<Timer>("CoyoteTimer");
       jumpTimer = GetNode<Timer>("JumpTimer");
 
-      OnEnter += () =>
-      {
-        coyoteTimer.Start();
-      };
       OnPhysicsProcess += PhysicsProcess;
       OnExit += () => { player.JumpCount = 0; };
     }
@@ -27,10 +21,7 @@ namespace Player.States
       var direction = Input.GetActionStrength("right") - Input.GetActionStrength("left");
       var velocity = player.Velocity;
       velocity.x = player.Speed * direction;
-      if (coyoteTimer.IsStopped())
-      {
-        velocity.y += player.Gravity * delta;
-      }
+      velocity.y += player.Gravity * delta;
       
       var jump = Input.IsActionJustPressed("jump");
       if (jump)
@@ -38,8 +29,9 @@ namespace Player.States
         jumpTimer.Start();
       }
 
-      if (player.IsOnFloor())
+      if (player.IsOnFloor() || player.InCoyoteTime)
       {
+        player.CancelCoyoteTime();
         velocity.y = player.JumpSpeed;
         player.Animation = "jump_up";
         player.JumpCount++;
