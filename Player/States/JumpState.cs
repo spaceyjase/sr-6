@@ -26,11 +26,13 @@ namespace Player.States
       var jump = Input.IsActionJustPressed("jump");
       if (jump)
       {
+        // jump buffering
         jumpTimer.Start();
       }
 
       if (player.IsOnFloor() || player.InCoyoteTime)
       {
+        // jump!
         player.CancelCoyoteTime();
         velocity.y = player.JumpSpeed;
         player.Animation = "jump_up";
@@ -38,10 +40,18 @@ namespace Player.States
       }
       else if (player.JumpCount < player.MaxJumps && jump)
       {
+        // double (triple!) jumps
         velocity.y = player.JumpSpeed;
         player.Animation = "jump_up";
         player.JumpCount++;
       }
+
+      if (Input.IsActionJustReleased("jump") && velocity.y < -player.JumpSpeed * 0.5f)
+      {
+        // jump cancel
+        velocity.y = player.Gravity * delta;
+      }
+
       player.Move(velocity);
 
       if (velocity.y > 0)
