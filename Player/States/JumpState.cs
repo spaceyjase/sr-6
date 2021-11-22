@@ -20,7 +20,9 @@ namespace Player.States
     {
       var direction = Input.GetActionStrength("right") - Input.GetActionStrength("left");
       var velocity = player.Velocity;
-      velocity.x = player.Speed * direction;
+      velocity.x = Mathf.IsEqualApprox(0f, direction)
+        ? Mathf.Lerp(velocity.x, 0f, player.Friction)
+        : Mathf.Lerp(velocity.x, player.Speed * direction, player.Acceleration);
       velocity.y += player.Gravity * delta;
       
       var jump = Input.IsActionJustPressed("jump");

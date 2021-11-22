@@ -9,6 +9,8 @@ namespace Player
     [Export] private float gravity = 750;
     [Export] private float jumpSpeed = -305;
     [Export] private int maxJumps = 1;
+    [Export] private float friction = 0.25f;
+    [Export] private float acceleration = 0.1f;
 
     private Timer coyoteTimer;
     private AnimationPlayer animationPlayer;
@@ -30,7 +32,9 @@ namespace Player
 
     private Sprite sprite;
 
-    public Vector2 Velocity { get; set; }
+    public float Friction => friction;
+    public float Acceleration => acceleration;
+    public Vector2 Velocity { get; private set; }
     public float Speed { get; private set; }
     public float Gravity { get; private set; }
     public float JumpSpeed { get; private set; }
