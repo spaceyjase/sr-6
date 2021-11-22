@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
 
@@ -8,6 +8,12 @@ extents = Vector2( 105.5, 5.5 )
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 13, 13 )
 
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 13, 43.5 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 13, 36.5 )
+
 [node name="TestLevel" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
@@ -15,6 +21,7 @@ runSpeed = 100.0
 jumpSpeed = -150.0
 maxJumps = 2
 friction = 0.75
+wallSlideGravityMultiplier = 0.33
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
@@ -33,6 +40,9 @@ __meta__ = {
 }
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="."]
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
 position = Vector2( -89, 14 )
@@ -41,6 +51,42 @@ shape = SubResource( 2 )
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D2"]
 margin_left = -102.0
 margin_right = -76.0
+margin_bottom = 31.0
+color = Color( 0.133333, 0.356863, 0.780392, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="."]
+position = Vector2( -24, 0 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4"]
+position = Vector2( -89, -16.5 )
+shape = SubResource( 3 )
+
+[node name="ColorRect" type="ColorRect" parent="StaticBody2D4"]
+margin_left = -102.0
+margin_top = -60.0
+margin_right = -76.0
+margin_bottom = 31.0
+color = Color( 0.133333, 0.356863, 0.780392, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+position = Vector2( 54, -9.5 )
+shape = SubResource( 4 )
+
+[node name="ColorRect" type="ColorRect" parent="StaticBody2D3"]
+margin_left = 41.0
+margin_top = -46.0
+margin_right = 67.0
 margin_bottom = 31.0
 color = Color( 0.133333, 0.356863, 0.780392, 1 )
 __meta__ = {

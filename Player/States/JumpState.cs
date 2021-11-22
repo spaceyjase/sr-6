@@ -23,7 +23,16 @@ namespace Player.States
       velocity.x = Mathf.IsEqualApprox(0f, direction)
         ? Mathf.Lerp(velocity.x, 0f, player.Friction)
         : Mathf.Lerp(velocity.x, player.Speed * direction, player.Acceleration);
-      velocity.y += player.Gravity * delta;
+      
+      var gravityDelta = player.Gravity * delta;
+      
+      if (velocity.y > 0f &&
+          (direction < 0 && player.IsTouchingLeftWall || direction > 0 && player.IsTouchingRightWall))
+      { // player is falling and pushing against a wall
+        gravityDelta *= player.WallSlideGravityMultiplier;
+        // TODO: particles
+      }
+      velocity.y += gravityDelta;
       
       var jump = Input.IsActionJustPressed("jump");
       if (jump)
@@ -51,7 +60,7 @@ namespace Player.States
       if (Input.IsActionJustReleased("jump") && velocity.y < -player.JumpSpeed * 0.5f)
       {
         // jump cancel
-        velocity.y = player.Gravity * delta;
+        velocity.y = gravityDelta;
       }
 
       player.Move(velocity);

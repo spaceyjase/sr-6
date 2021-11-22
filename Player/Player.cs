@@ -11,10 +11,13 @@ namespace Player
     [Export] private int maxJumps = 1;
     [Export] private float friction = 0.25f;
     [Export] private float acceleration = 0.1f;
+    [Export] private float wallSlideGravityMultiplier = 0.5f;
 
     private Timer coyoteTimer;
     private AnimationPlayer animationPlayer;
     private Camera2D camera;
+    private RayCast2D raycastLeft;
+    private RayCast2D raycastRight;
 
     private string animation;
 
@@ -41,6 +44,9 @@ namespace Player
     public int JumpCount { get; set; }
     public int MaxJumps { get; private set; }
     public bool InCoyoteTime => !coyoteTimer.IsStopped();
+    public bool IsTouchingLeftWall => raycastLeft.IsColliding();
+    public bool IsTouchingRightWall => raycastRight.IsColliding();
+    public float WallSlideGravityMultiplier => wallSlideGravityMultiplier;
 
     public override void _Ready()
     {
@@ -49,9 +55,10 @@ namespace Player
       animationPlayer = GetNode<AnimationPlayer>(nameof(AnimationPlayer));
       sprite = GetNode<Sprite>(nameof(Sprite));
       camera = GetNode<Camera2D>(nameof(Camera2D));
-      
       coyoteTimer = GetNode<Timer>("CoyoteTimer");
-
+      raycastLeft = GetNode<RayCast2D>("RayCast2DLeft");
+      raycastRight = GetNode<RayCast2D>("RayCast2DRight");
+      
       Speed = runSpeed;
       Gravity = gravity;
       JumpSpeed = jumpSpeed;
