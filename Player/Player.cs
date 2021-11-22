@@ -94,10 +94,10 @@ namespace Player
 
     public void SetCameraLimits(Rect2 mapSize, Vector2 cellSize)
     {
-      camera.LimitLeft = (int)((mapSize.Position.x - 1) * cellSize.x);
-      camera.LimitRight = (int)((mapSize.End.x + 1) * cellSize.x);
-      camera.LimitBottom = (int)((mapSize.End.y + 1) * cellSize.y);
-      camera.LimitTop = (int)((mapSize.Position.y - 1) * cellSize.y);
+      camera.LimitLeft = (int)mapSize.Position.x;
+      camera.LimitRight = (int)(mapSize.Position.x + mapSize.Size.x * cellSize.x);
+      camera.LimitBottom = (int)(mapSize.Position.y + mapSize.Size.y * cellSize.y);
+      camera.LimitTop = (int)mapSize.Position.y;
     }
 
     public void StartCoyoteTimer() => coyoteTimer.Start();
