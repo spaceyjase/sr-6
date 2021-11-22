@@ -1,19 +1,20 @@
-using System.Configuration;
 using Godot;
 
 namespace Player
 {
   public class Player : KinematicBody2D
   {
-    [Export] private float runSpeed = 150;
-    [Export] private float gravity = 750;
-    [Export] private float jumpSpeed = -305;
-    [Export] private int maxJumps = 1;
-    [Export] private float friction = 0.25f;
+    [Export] private float runSpeed = 85;
+    [Export] private float gravity = 700;
+    [Export] private float jumpSpeed = -150;
+    [Export] private int maxJumps = 2;
+    [Export] private float friction = 0.75f;
     [Export] private float acceleration = 0.1f;
-    [Export] private float wallSlideGravityMultiplier = 0.5f;
+    [Export] private float wallSlideGravityMultiplier = 0.33f;
+    [Export] private float wallJumpSpeed = 50f;
 
     private Timer coyoteTimer;
+    private Timer wallJumpTimer;
     private AnimationPlayer animationPlayer;
     private Camera2D camera;
     private RayCast2D raycastLeft;
@@ -47,6 +48,16 @@ namespace Player
     public bool IsTouchingLeftWall => raycastLeft.IsColliding();
     public bool IsTouchingRightWall => raycastRight.IsColliding();
     public float WallSlideGravityMultiplier => wallSlideGravityMultiplier;
+    public float WallJumpSpeed => wallJumpSpeed;
+
+    public bool WallJumping
+    {
+      get => !wallJumpTimer.IsStopped();
+      set
+      {
+        if (value) wallJumpTimer.Start();
+      }
+    }
 
     public override void _Ready()
     {
@@ -56,9 +67,10 @@ namespace Player
       sprite = GetNode<Sprite>(nameof(Sprite));
       camera = GetNode<Camera2D>(nameof(Camera2D));
       coyoteTimer = GetNode<Timer>("CoyoteTimer");
+      wallJumpTimer = GetNode<Timer>("WallJumpTimer");
       raycastLeft = GetNode<RayCast2D>("RayCast2DLeft");
       raycastRight = GetNode<RayCast2D>("RayCast2DRight");
-      
+
       Speed = runSpeed;
       Gravity = gravity;
       JumpSpeed = jumpSpeed;

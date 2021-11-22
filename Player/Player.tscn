@@ -113,8 +113,6 @@ extents = Vector2( 1.5, 4 )
 collision_layer = 2
 collision_mask = 13
 script = ExtResource( 8 )
-friction = 0.5
-wallSlideGravityMultiplier = 0.75
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
@@ -142,6 +140,9 @@ smoothing_enabled = true
 
 [node name="CoyoteTimer" type="Timer" parent="."]
 wait_time = 0.1
+one_shot = true
+
+[node name="WallJumpTimer" type="Timer" parent="."]
 one_shot = true
 
 [node name="RayCast2DLeft" type="RayCast2D" parent="."]

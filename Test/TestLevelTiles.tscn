@@ -17,4 +17,4 @@ position = Vector2( 16, 88 )
 runSpeed = 85.0
 gravity = 700.0
 jumpSpeed = -150.0
-maxJumps = 2
+wallJumpSpeed = 50.0

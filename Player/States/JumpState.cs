@@ -5,7 +5,7 @@ namespace Player.States
   public class JumpState : PlayerState
   {
     private Timer jumpTimer;
-    
+
     public override void _Ready()
     {
       base._Ready();
@@ -20,15 +20,17 @@ namespace Player.States
     {
       var direction = Input.GetActionStrength("right") - Input.GetActionStrength("left");
       var velocity = player.Velocity;
-      velocity.x = Mathf.IsEqualApprox(0f, direction)
-        ? Mathf.Lerp(velocity.x, 0f, player.Friction)
-        : Mathf.Lerp(velocity.x, player.Speed * direction, player.Acceleration);
-      
+      if (!player.WallJumping)
+      {
+        velocity.x = Mathf.IsEqualApprox(0f, direction)
+          ? Mathf.Lerp(velocity.x, 0f, player.Friction)
+          : Mathf.Lerp(velocity.x, player.Speed * direction, player.Acceleration);
+      }
+
       var gravityDelta = player.Gravity * delta;
       
-      if (velocity.y > 0f &&
-          (direction < 0 && player.IsTouchingLeftWall || direction > 0 && player.IsTouchingRightWall))
-      { // player is falling and pushing against a wall
+      if (velocity.y > 0f && (player.IsTouchingLeftWall || player.IsTouchingRightWall))
+      { // player is falling and against a wall
         gravityDelta *= player.WallSlideGravityMultiplier;
         // TODO: particles
       }
@@ -54,7 +56,15 @@ namespace Player.States
         // double (triple!) jumps
         velocity.y = player.JumpSpeed;
         player.Animation = "jump_up";
-        player.JumpCount++;
+        if (player.IsTouchingLeftWall || player.IsTouchingRightWall)
+        { // wall jump!
+          velocity.x = player.IsTouchingLeftWall ? player.WallJumpSpeed : -player.WallJumpSpeed;
+          player.WallJumping = true;
+        }
+        else
+        {
+          player.JumpCount++;
+        }
       }
 
       if (Input.IsActionJustReleased("jump") && velocity.y < -player.JumpSpeed * 0.5f)
