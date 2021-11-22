@@ -12,6 +12,8 @@ namespace Levels
     public override void _Ready()
     {
       world = GetNode<TileMap>("World");
+      SetProcess(false);
+      SetPhysicsProcess(false);
     }
     
     public Area2D Area => GetNode<Area2D>("Area2D");

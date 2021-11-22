@@ -151,14 +151,16 @@ one_shot = true
 one_shot = true
 
 [node name="RayCast2DLeft" type="RayCast2D" parent="."]
+position = Vector2( 0, -4 )
 rotation = 1.5708
 enabled = true
-cast_to = Vector2( 0, 5 )
+cast_to = Vector2( 0, 4 )
 
 [node name="RayCast2DRight" type="RayCast2D" parent="."]
+position = Vector2( 0, -4 )
 rotation = -1.5708
 enabled = true
-cast_to = Vector2( 0, 5 )
+cast_to = Vector2( 0, 4 )
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource( 2 )
