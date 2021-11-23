@@ -82,11 +82,15 @@ namespace Player
       if (velocity.x < 0)
       {
         sprite.FlipH = true;
+        raycastLeft.Enabled = true;
+        raycastRight.Enabled = false;
       }
 
       if (velocity.x > 0)
       {
         sprite.FlipH = false;
+        raycastLeft.Enabled = false;
+        raycastRight.Enabled = true;
       }
 
       Velocity = MoveAndSlide(velocity, Vector2.Up);
