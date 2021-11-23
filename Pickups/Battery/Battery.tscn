@@ -25,6 +25,7 @@ tracks/0/keys = {
 [node name="Battery" type="Node2D"]
 
 [node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 0, -1.11572 )
 texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 10, 0, 10, 10 )

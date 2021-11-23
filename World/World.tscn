@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Levels/Scenes/Start.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Levels/Scenes/S01.tscn" type="PackedScene" id=3]
 [ext_resource path="res://World/World.cs" type="Script" id=4]
+[ext_resource path="res://Levels/Scenes/S02.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Levels/Scenes/S03.tscn" type="PackedScene" id=6]
 
 [node name="World" type="Node2D"]
 script = ExtResource( 4 )
@@ -12,6 +14,12 @@ script = ExtResource( 4 )
 
 [node name="S01" parent="." instance=ExtResource( 3 )]
 position = Vector2( 152, 0 )
+
+[node name="S01" parent="S01" instance=ExtResource( 6 )]
+position = Vector2( 176, 0 )
+
+[node name="S02" parent="." instance=ExtResource( 5 )]
+position = Vector2( 328, 120 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 56, 80 )
