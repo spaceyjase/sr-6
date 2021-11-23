@@ -13,12 +13,15 @@ namespace World
     
     public override void _Ready()
     {
-      foreach (var level in this.GetChildren<Level>())
+      var levelParent = GetNode<Node2D>("LevelParent");
+      foreach (var level in levelParent.GetChildren<Level>())
       {
         levels.Add(level);
         level.Area.Connect("body_entered", this, nameof(OnLevelBodyEntered), new Array{ level });
       }
       GetNode<Player.Player>("Player").Visible = true;
+      
+      // TODO: spawn player
     }
 
     private void OnLevelBodyEntered(Node2D area, Level level)
