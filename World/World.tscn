@@ -15,8 +15,8 @@ script = ExtResource( 4 )
 [node name="S01" parent="." instance=ExtResource( 3 )]
 position = Vector2( 152, 0 )
 
-[node name="S01" parent="S01" instance=ExtResource( 6 )]
-position = Vector2( 176, 0 )
+[node name="S03" parent="." instance=ExtResource( 6 )]
+position = Vector2( 328, 0 )
 
 [node name="S02" parent="." instance=ExtResource( 5 )]
 position = Vector2( 328, 120 )

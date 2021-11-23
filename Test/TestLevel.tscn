@@ -17,8 +17,6 @@ extents = Vector2( 13, 27.5 )
 [node name="TestLevel" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-jumpSpeed = -150.0
-friction = 0.75
 wallSlideGravityMultiplier = 0.33
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
