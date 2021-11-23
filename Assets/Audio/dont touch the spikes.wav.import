@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/dont touch the spikes.wav-05ace05dc779e6c8d7e1dd6d4c83d4f2.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/dont touch the spikes.wav"
+dest_files=[ "res://.import/dont touch the spikes.wav-05ace05dc779e6c8d7e1dd6d4c83d4f2.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=true
+compress/mode=0
