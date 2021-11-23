@@ -4,7 +4,7 @@
 [ext_resource path="res://Levels/Level.cs" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 72, 60 )
+extents = Vector2( 88, 70 )
 
 [node name="Level" type="Node2D"]
 script = ExtResource( 2 )

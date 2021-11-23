@@ -1,4 +1,6 @@
+using Extensions;
 using Godot;
+using Pickups.Battery;
 
 namespace Levels
 {
@@ -14,11 +16,21 @@ namespace Levels
       world = GetNode<TileMap>("World");
       SetProcess(false);
       SetPhysicsProcess(false);
+
+      foreach (var battery in this.GetChildren<Battery>())
+      {
+        battery.Connect(nameof(Battery.Pickup), this, nameof(OnBatteryPickup));
+      }
     }
     
     public Area2D Area => GetNode<Area2D>("Area2D");
 
     public Rect2 GetUsedRect() => world.GetUsedRect();
     public Vector2 GetCellSize() => world.CellSize;
+
+    private void OnBatteryPickup()
+    {
+      GD.Print("Battery collected!");
+    }
   }
 }
