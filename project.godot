@@ -23,6 +23,10 @@ window/stretch/aspect="expand"
 
 enabled=PoolStringArray( "res://addons/color-template-editor/plugin.cfg" )
 
+[global]
+
+resol=false
+
 [input]
 
 left={
