@@ -15,18 +15,6 @@ cell_size = Vector2( 8, 8 )
 cell_quadrant_size = 8
 format = 1
 
-[node name="Objects" type="TileMap" parent="."]
-cell_size = Vector2( 8, 8 )
-format = 1
-
-[node name="Pickups" type="TileMap" parent="."]
-cell_size = Vector2( 8, 8 )
-format = 1
-
-[node name="Danger" type="TileMap" parent="."]
-cell_size = Vector2( 8, 8 )
-format = 1
-
 [node name="Area2D" type="Area2D" parent="."]
 collision_mask = 2
 

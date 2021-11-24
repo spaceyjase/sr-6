@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Levels/Level.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Pickups/Battery/Battery.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Props/RedLight.tscn" type="PackedScene" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 88, 70 )
@@ -16,5 +17,8 @@ tile_data = PoolIntArray( 0, 52, 0, 1, 50, 0, 2, 52, 0, 3, 52, 0, 4, 52, 0, 5, 1
 position = Vector2( 96, 74 )
 shape = SubResource( 1 )
 
-[node name="Battery" parent="." index="5" instance=ExtResource( 2 )]
+[node name="Battery" parent="." index="2" instance=ExtResource( 2 )]
 position = Vector2( 108, 120 )
+
+[node name="RedLight" parent="." index="3" instance=ExtResource( 3 )]
+position = Vector2( 104, 88 )
