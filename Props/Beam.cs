@@ -68,8 +68,25 @@ namespace Props
       endPosition = line.Points[1];
       initialWidth = line.Width;
 
-      // TODO: automatically set the start and end positions for the line (currently editing children manually)
-
+      var start = GetNode<Node2D>("Start");
+      var end = GetNode<Node2D>("End");
+      var pos = collision.GlobalPosition;
+      var vertical = !Mathf.IsEqualApprox(start.Position.y, end.Position.y);
+      if (vertical)
+      {
+        pos.x = World.World.HalfCellSize;
+        pos.y = end.Position.y / 2f + World.World.HalfCellSize;
+      }
+      else
+      {
+        pos.y = World.World.HalfCellSize;
+        pos.x = end.Position.x / 2f + World.World.HalfCellSize;
+      }
+      collision.Position = pos;
+      var shape = new RectangleShape2D();
+      shape.Extents = new Vector2(vertical ? 2f : pos.x, vertical ? pos.y : 2f);
+      collision.Shape = shape;
+        
       // Not initially firing
       IsCasting = false;
     }

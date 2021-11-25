@@ -8,7 +8,8 @@ namespace World
 {
   public class World : Node2D
   {
-
+    public const int HalfCellSize = 4;
+    
     private List<Level> levels = new List<Level>();
     
     public override void _Ready()
