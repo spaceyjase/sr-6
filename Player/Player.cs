@@ -1,9 +1,14 @@
+using System.Runtime.Remoting.Lifetime;
 using Godot;
 
 namespace Player
 {
   public class Player : KinematicBody2D
   {
+    [Signal] private delegate void LifeChanged(int life);
+    [Signal] private delegate void Dead();
+    
+    [Export] private int initialLife = 3;
     [Export] private float runSpeed = 85;
     [Export] private float gravity = 700;
     [Export] private float jumpSpeed = -150;
@@ -12,6 +17,7 @@ namespace Player
     [Export] private float acceleration = 0.1f;
     [Export] private float wallSlideGravityMultiplier = 0.33f;
     [Export] private float wallJumpSpeed = 50f;
+    [Export] private float hurtTimeout = 0.5f;
 
     private Timer coyoteTimer;
     private Timer wallJumpTimer;
@@ -35,6 +41,17 @@ namespace Player
     }
 
     private Sprite sprite;
+    private int life;
+
+    private int Life
+    {
+      get => life;
+      set
+      {
+        life = value;
+        EmitSignal(nameof(LifeChanged), life);
+      }
+    }
 
     public float Friction => friction;
     public float Acceleration => acceleration;
@@ -59,6 +76,8 @@ namespace Player
       }
     }
 
+    public float HurtTimeout => hurtTimeout;
+
     public override void _Ready()
     {
       base._Ready();
@@ -70,6 +89,8 @@ namespace Player
       wallJumpTimer = GetNode<Timer>("WallJumpTimer");
       raycastLeft = GetNode<RayCast2D>("RayCast2DLeft");
       raycastRight = GetNode<RayCast2D>("RayCast2DRight");
+
+      Life = initialLife;
 
       Speed = runSpeed;
       Gravity = gravity;
@@ -107,5 +128,17 @@ namespace Player
     public void StartCoyoteTimer() => coyoteTimer.Start();
 
     public void CancelCoyoteTime() => coyoteTimer.Stop();
+
+    public void TakeDamage()
+    {
+      Life -= 1;
+      EmitSignal(nameof(LifeChanged), Life);
+      if (IsDead)
+      {
+        EmitSignal(nameof(Dead));
+      }
+    }
+
+    public bool IsDead => Life <= 0;
   }
 }

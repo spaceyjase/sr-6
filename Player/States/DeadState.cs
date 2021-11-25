@@ -8,6 +8,7 @@ namespace Player.States
     public override void _Ready()
     {
       base._Ready();
+      OnEnter += () => { player.Animation = "dead"; };
     }
   }
 }
