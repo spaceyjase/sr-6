@@ -82,13 +82,13 @@ __meta__ = {
 position = Vector2( -29, -2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
-position = Vector2( 54, -0.5 )
+position = Vector2( 93, 0 )
 shape = SubResource( 4 )
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D3"]
-margin_left = 41.0
+margin_left = 80.0
 margin_top = -28.0
-margin_right = 67.0
+margin_right = 106.0
 margin_bottom = 31.0
 color = Color( 0.133333, 0.356863, 0.780392, 1 )
 __meta__ = {

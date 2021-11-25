@@ -17,7 +17,7 @@ namespace Player.States
       var velocity = player.Velocity;
       var gravityDelta = player.Gravity * delta;
       velocity.y += gravityDelta;
-      velocity.x = Mathf.Lerp(velocity.x, 0f, player.Friction * delta);
+      velocity.x = Mathf.Lerp(velocity.x, 0f, player.Friction * 4f * delta);
       
       player.Move(velocity, true);
     }
