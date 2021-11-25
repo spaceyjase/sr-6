@@ -4,10 +4,16 @@
 [ext_resource path="res://Props/Beam.cs" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 2, 7 )
+extents = Vector2( 2, 7.5 )
 
-[node name="Beam" type="Node2D"]
+[node name="Beam" type="KinematicBody2D" groups=["Enemies"]]
+collision_layer = 4
+collision_mask = 2
 script = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 4, 8 )
+shape = SubResource( 2 )
 
 [node name="Start" type="Sprite" parent="."]
 texture = ExtResource( 1 )
@@ -39,18 +45,5 @@ wait_time = 2.0
 one_shot = true
 autostart = true
 
-[node name="Area2D" type="Area2D" parent="."]
-collision_layer = 4
-collision_mask = 2
-monitoring = false
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2( 4, 8 )
-shape = SubResource( 2 )
-
-[connection signal="tween_step" from="Tween" to="." method="OnTween_TweenStep"]
 [connection signal="timeout" from="Timer" to="." method="OnTimer_Timeout"]
 [connection signal="timeout" from="StartTimer" to="." method="OnStartTimer_Timeout"]

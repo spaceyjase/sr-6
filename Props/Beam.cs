@@ -2,15 +2,14 @@ using Godot;
 
 namespace Props
 {
-  public class Beam : Node2D
+  public class Beam : KinematicBody2D
   {
     [Export] private float growthTime = 0.1f;
-    [Export] private float startDelay;
 
     private Line2D line;
     private Tween tween;
     private Timer timer;
-    private Area2D area;
+    private CollisionShape2D collision;
 
     private Vector2 endPosition;
     private float initialWidth;
@@ -44,6 +43,7 @@ namespace Props
 
       tween.InterpolateProperty(line, "width", line.Width, 0, growthTime);
       tween.Start();
+      collision.CallDeferred("set", "disabled", true);
     }
 
     private void Appear()
@@ -55,6 +55,7 @@ namespace Props
 
       tween.InterpolateProperty(line, "width", 0, initialWidth, growthTime);
       tween.Start();
+      collision.CallDeferred("set", "disabled", false);
     }
 
     public override void _Ready()
@@ -62,7 +63,7 @@ namespace Props
       line = GetNode<Line2D>("Line2D");
       tween = GetNode<Tween>("Tween");
       timer = GetNode<Timer>("Timer");
-      area = GetNode<Area2D>("Area2D");
+      collision = GetNode<CollisionShape2D>("CollisionShape2D");
 
       endPosition = line.Points[1];
       initialWidth = line.Width;
@@ -81,19 +82,6 @@ namespace Props
     private void OnStartTimer_Timeout()
     {
       timer.Start();
-    }
-  
-    private void OnTween_TweenStep(object o, NodePath key, float elapsed, object value)
-    {
-      switch (area.Monitoring)
-      {
-        case false when (float)value > initialWidth / 2f:
-          area.Monitoring = true;
-          break;
-        case true:
-          area.Monitoring = false;
-          break;
-      }
     }
   }
 }

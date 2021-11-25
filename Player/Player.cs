@@ -98,18 +98,25 @@ namespace Player
       MaxJumps = maxJumps;
     }
 
-    public void Move(Vector2 velocity)
+    public void Move(Vector2 velocity, bool hurtOrDead = false)
     {
       if (velocity.x < 0)
       {
-        sprite.FlipH = true;
+        if (!hurtOrDead)
+        {
+          sprite.FlipH = true;
+        }
+
         raycastLeft.Enabled = true;
         raycastRight.Enabled = false;
       }
 
       if (velocity.x > 0)
       {
-        sprite.FlipH = false;
+        if (!hurtOrDead)
+        {
+          sprite.FlipH = false;
+        }
         raycastLeft.Enabled = false;
         raycastRight.Enabled = true;
       }
@@ -133,12 +140,14 @@ namespace Player
     {
       Life -= 1;
       EmitSignal(nameof(LifeChanged), Life);
-      if (IsDead)
-      {
-        EmitSignal(nameof(Dead));
-      }
+      if (!IsDead) return;
+      
+      EmitSignal(nameof(Dead));
+      SetProcess(false);
+      SetPhysicsProcess(false);
     }
 
     public bool IsDead => Life <= 0;
+    public bool IsFacingLeft => sprite.FlipH;
   }
 }

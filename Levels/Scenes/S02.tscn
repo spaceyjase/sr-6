@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Levels/Level.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Pickups/Battery/Battery.tscn" type="PackedScene" id=2]
@@ -7,6 +7,9 @@
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 88, 70 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 2, 19 )
 
 [node name="S02" instance=ExtResource( 1 )]
 
@@ -27,12 +30,19 @@ position = Vector2( 104, 88 )
 [node name="Beam" parent="." index="4" instance=ExtResource( 4 )]
 position = Vector2( 32, 72 )
 
-[node name="End" parent="Beam" index="1"]
+[node name="CollisionShape2D" parent="Beam" index="0"]
+position = Vector2( 4, 20 )
+shape = SubResource( 2 )
+
+[node name="End" parent="Beam" index="2"]
 position = Vector2( 0, 32 )
 
-[node name="Line2D" parent="Beam" index="2"]
+[node name="Line2D" parent="Beam" index="3"]
 position = Vector2( 2.4, 8.73926 )
 scale = Vector2( 0.4, 1.42743 )
 points = PoolVector2Array( 4, 21.1994, 4, -5.42181 )
+
+[node name="Timer" parent="Beam" index="5"]
+wait_time = 5.0
 
 [editable path="Beam"]

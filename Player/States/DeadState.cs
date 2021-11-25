@@ -9,6 +9,17 @@ namespace Player.States
     {
       base._Ready();
       OnEnter += () => { player.Animation = "dead"; };
+      OnPhysicsProcess += PhysicsProcess;
+    }
+
+    private void PhysicsProcess(float delta)
+    {
+      var velocity = player.Velocity;
+      var gravityDelta = player.Gravity * delta;
+      velocity.y += gravityDelta;
+      velocity.x = Mathf.Lerp(velocity.x, 0f, player.Friction * delta);
+      
+      player.Move(velocity, true);
     }
   }
 }

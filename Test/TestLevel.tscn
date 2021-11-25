@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Props/Beam.tscn" type="PackedScene" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 105.5, 5.5 )
@@ -14,9 +15,13 @@ extents = Vector2( 13, 43.5 )
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 13, 27.5 )
 
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 2, 7.5 )
+
 [node name="TestLevel" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
+collision_mask = 13
 wallSlideGravityMultiplier = 0.33
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
@@ -89,3 +94,13 @@ color = Color( 0.133333, 0.356863, 0.780392, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Beam" parent="." instance=ExtResource( 2 )]
+position = Vector2( -44, 10 )
+collision_mask = 15
+
+[node name="CollisionShape2D" parent="Beam" index="0"]
+position = Vector2( 4, 7.5 )
+shape = SubResource( 5 )
+
+[editable path="Beam"]
