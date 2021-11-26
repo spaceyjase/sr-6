@@ -11,6 +11,7 @@ namespace Player.States
       base._Ready();
 
       OnEnter += OnEnterAction;
+      OnExit += () => { player.Invulnerable = true; };
       OnPhysicsProcess += PhysicsProcess;
     }
 

@@ -5,9 +5,12 @@ namespace Player
 {
   public class Player : KinematicBody2D
   {
-    [Signal] private delegate void LifeChanged(int life);
-    [Signal] private delegate void Dead();
-    
+    [Signal]
+    private delegate void LifeChanged(int life);
+
+    [Signal]
+    private delegate void Dead();
+
     [Export] private int initialLife = 3;
     [Export] private float runSpeed = 85;
     [Export] private float gravity = 700;
@@ -21,6 +24,7 @@ namespace Player
 
     private Timer coyoteTimer;
     private Timer wallJumpTimer;
+    private Timer invulnerableTimer;
     private AnimationPlayer animationPlayer;
     private Camera2D camera;
     private RayCast2D raycastLeft;
@@ -76,6 +80,20 @@ namespace Player
       }
     }
 
+    public bool Invulnerable
+    {
+      get => !invulnerableTimer.IsStopped();
+      set
+      {
+        if (!value) return;
+        
+        invulnerableTimer.Start();
+        var modulate = sprite.Modulate;
+        modulate.a = 0.5f;
+        sprite.Modulate = modulate;
+      }
+    }
+
     public float HurtTimeout => hurtTimeout;
 
     public override void _Ready()
@@ -87,6 +105,7 @@ namespace Player
       camera = GetNode<Camera2D>(nameof(Camera2D));
       coyoteTimer = GetNode<Timer>("CoyoteTimer");
       wallJumpTimer = GetNode<Timer>("WallJumpTimer");
+      invulnerableTimer = GetNode<Timer>("InvulnerableTimer");
       raycastLeft = GetNode<RayCast2D>("RayCast2DLeft");
       raycastRight = GetNode<RayCast2D>("RayCast2DRight");
 
@@ -135,12 +154,19 @@ namespace Player
 
     public void CancelCoyoteTime() => coyoteTimer.Stop();
 
+    private void OnInvulnerableTimer_Timeout()
+    {
+      var modulate = sprite.Modulate;
+      modulate.a = 1.0f;
+      sprite.Modulate = modulate;
+    }
+
     public void TakeDamage()
     {
       Life -= 1;
       EmitSignal(nameof(LifeChanged), Life);
       if (!IsDead) return;
-      
+
       EmitSignal(nameof(Dead));
       SetProcess(false);
       SetPhysicsProcess(false);

@@ -1,4 +1,5 @@
-﻿using StateMachine;
+﻿using Godot;
+using StateMachine;
 
 namespace Player.States
 {
@@ -11,6 +12,19 @@ namespace Player.States
       base._Ready();
 
       player = Owner as Player;
+    }
+
+    protected void CheckForCollisions()
+    {
+      if (player.Invulnerable) return;
+      
+      for (var i = 0; i < player.GetSlideCount(); ++i)
+      {
+        var collision = player.GetSlideCollision(i);
+        if (!(collision.Collider is KinematicBody2D other) || !other.IsInGroup("Enemies")) continue;
+        StateMachine?.ChangeState("Hurt");
+        return;
+      }
     }
   }
 }

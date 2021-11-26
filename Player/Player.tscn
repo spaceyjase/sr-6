@@ -231,6 +231,10 @@ one_shot = true
 [node name="WallJumpTimer" type="Timer" parent="."]
 one_shot = true
 
+[node name="InvulnerableTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
 [node name="RayCast2DLeft" type="RayCast2D" parent="."]
 position = Vector2( 0, -4 )
 rotation = 1.5708
@@ -264,3 +268,5 @@ script = ExtResource( 6 )
 
 [node name="Dead" type="Node" parent="StateMachine"]
 script = ExtResource( 5 )
+
+[connection signal="timeout" from="InvulnerableTimer" to="." method="OnInvulnerableTimer_Timeout"]
