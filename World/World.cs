@@ -22,7 +22,10 @@ namespace World
       }
       GetNode<Player.Player>("Player").Visible = true;
       
-      // TODO: spawn player
+      // TODO: spawn player?
+      
+      var batteries = GetTree().GetNodesInGroup("Battery");
+      GD.Print($"Total batteries: {batteries.Count}");
     }
 
     private void OnLevelBodyEntered(Node2D area, Level level)

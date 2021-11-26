@@ -23,7 +23,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( 0, -1 ), Vector2( 0, -1 ), Vector2( 0, 0 ) ]
 }
 
-[node name="Battery" type="Node2D"]
+[node name="Battery" type="Node2D" groups=["Battery"]]
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
