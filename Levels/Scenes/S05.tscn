@@ -64,7 +64,7 @@ scale = Vector2( 0.4, 0.724377 )
 points = PoolVector2Array( 337.5, -2.94894, 2.5, -2.94894 )
 
 [node name="Timer" parent="Beam2" index="5"]
-wait_time = 3.0
+wait_time = 0.75
 
 [node name="StartTimer" parent="Beam2" index="6"]
 wait_time = 1.5

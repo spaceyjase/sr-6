@@ -11,7 +11,6 @@ namespace Player.States
       base._Ready();
 
       OnEnter += OnEnterAction;
-      OnExit += () => { player.Invulnerable = true; };
       OnPhysicsProcess += PhysicsProcess;
     }
 
@@ -19,7 +18,7 @@ namespace Player.States
     {
       var gravityDelta = player.Gravity * delta;
       velocity.y += gravityDelta;
-      
+
       player.Move(velocity, true);
     }
 
@@ -28,7 +27,7 @@ namespace Player.States
       velocity = player.Velocity;
       velocity.x = player.IsFacingLeft ? player.WallJumpSpeed : -player.WallJumpSpeed;
       velocity.y = player.JumpSpeed;
-      
+
       player.Animation = "hurt";
       player.TakeDamage();
       await ToSignal(GetTree().CreateTimer(player.HurtTimeout), "timeout");

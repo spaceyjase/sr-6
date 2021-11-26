@@ -16,8 +16,6 @@ namespace Player.States
 
     protected void CheckForCollisions()
     {
-      if (player.Invulnerable) return;
-      
       for (var i = 0; i < player.GetSlideCount(); ++i)
       {
         var collision = player.GetSlideCollision(i);

@@ -21,7 +21,6 @@ extents = Vector2( 2, 7.5 )
 [node name="TestLevel" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-collision_mask = 13
 wallSlideGravityMultiplier = 0.33
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]

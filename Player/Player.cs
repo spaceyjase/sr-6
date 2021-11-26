@@ -80,7 +80,7 @@ namespace Player
       }
     }
 
-    public bool Invulnerable
+    public bool IsInvulnerable
     {
       get => !invulnerableTimer.IsStopped();
       set
@@ -88,9 +88,9 @@ namespace Player
         if (!value) return;
         
         invulnerableTimer.Start();
-        var modulate = sprite.Modulate;
+        var modulate = sprite.SelfModulate;
         modulate.a = 0.5f;
-        sprite.Modulate = modulate;
+        sprite.SelfModulate = modulate;
       }
     }
 
@@ -156,16 +156,22 @@ namespace Player
 
     private void OnInvulnerableTimer_Timeout()
     {
-      var modulate = sprite.Modulate;
+      var modulate = sprite.SelfModulate;
       modulate.a = 1.0f;
-      sprite.Modulate = modulate;
+      sprite.SelfModulate = modulate;
     }
 
     public void TakeDamage()
     {
+      if (IsInvulnerable) return;
+      
       Life -= 1;
       EmitSignal(nameof(LifeChanged), Life);
-      if (!IsDead) return;
+      if (!IsDead)
+      {
+        IsInvulnerable = true;
+        return;
+      }
 
       EmitSignal(nameof(Dead));
       SetProcess(false);
