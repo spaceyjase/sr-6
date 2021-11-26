@@ -1,9 +1,40 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://HUD/HUD_theme.tres" type="Theme" id=1]
 [ext_resource path="res://Assets/Textures/portrait.png" type="Texture" id=2]
 [ext_resource path="res://Assets/Textures/battery_single.png" type="Texture" id=3]
 [ext_resource path="res://HUD/HUD.cs" type="Script" id=4]
+
+[sub_resource type="Animation" id=1]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("HBoxContainer/HBoxContainer:rect_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "update_score"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("HBoxContainer/HBoxContainer:rect_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1.2, 1.2 ), Vector2( 1, 1 ) ]
+}
 
 [node name="HUD" type="MarginContainer"]
 anchor_top = 1.0
@@ -41,7 +72,7 @@ stretch_mode = 6
 
 [node name="BatteryLabel" type="Label" parent="HBoxContainer/HBoxContainer"]
 margin_left = 24.0
-margin_top = 3.0
+margin_top = 4.0
 margin_right = 253.0
 margin_bottom = 27.0
 size_flags_horizontal = 3
@@ -59,6 +90,7 @@ margin_bottom = 31.0
 [node name="L1" type="TextureRect" parent="HBoxContainer/LifeCounter"]
 margin_right = 24.0
 margin_bottom = 31.0
+rect_pivot_offset = Vector2( 12, 15 )
 texture = ExtResource( 2 )
 stretch_mode = 6
 flip_h = true
@@ -67,6 +99,7 @@ flip_h = true
 margin_left = 28.0
 margin_right = 52.0
 margin_bottom = 31.0
+rect_pivot_offset = Vector2( 12, 15 )
 texture = ExtResource( 2 )
 stretch_mode = 6
 flip_h = true
@@ -75,6 +108,11 @@ flip_h = true
 margin_left = 56.0
 margin_right = 80.0
 margin_bottom = 31.0
+rect_pivot_offset = Vector2( 12, 15 )
 texture = ExtResource( 2 )
 stretch_mode = 6
 flip_h = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 1 )
+anims/update_score = SubResource( 2 )

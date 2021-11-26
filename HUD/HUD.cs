@@ -8,6 +8,7 @@ namespace HUD
     private Array<TextureRect> lifeCounter;
     private Label batteryLabel;
     private int batteryCount = -1;  // HACK for initial score update.
+    private AnimationPlayer animationPlayer;
   
     public override void _Ready()
     {
@@ -18,6 +19,7 @@ namespace HUD
         GetNode<TextureRect>("HBoxContainer/LifeCounter/L3")
       };
       batteryLabel = GetNode<Label>("HBoxContainer/HBoxContainer/BatteryLabel");
+      animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
     }
 
     private async void OnPlayer_Life_Changed(int value)
@@ -36,6 +38,8 @@ namespace HUD
     public void UpdateScore(int batteryTotal)
     {
       batteryLabel.Text = $"{++batteryCount} / {batteryTotal}";
+      if (batteryCount == 0) return;
+      animationPlayer.Play("update_score");
     }
   }
 }
