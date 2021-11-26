@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Levels/Scenes/Start.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://Assets/Textures/8x8dot.png" type="Texture" id=9]
 [ext_resource path="res://World/WorldEnvironment.tres" type="Environment" id=10]
 [ext_resource path="res://Levels/Scenes/S05.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Levels/Scenes/S06.tscn" type="PackedScene" id=12]
 
 [sub_resource type="Curve" id=2]
 _data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.254355, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.501742, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.749129, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
@@ -84,6 +85,9 @@ position = Vector2( 328, 272 )
 
 [node name="S05" parent="LevelParent" instance=ExtResource( 11 )]
 position = Vector2( 520, 120 )
+
+[node name="S06" parent="LevelParent" instance=ExtResource( 12 )]
+position = Vector2( 136, 120 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 56, 80 )

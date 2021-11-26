@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Levels/Level.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Pickups/Battery/Battery.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Props/RedLight.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Tileset/World.tres" type="TileSet" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 92, 68 )
@@ -25,3 +26,9 @@ position = Vector2( 64, 24 )
 
 [node name="RedLight2" parent="." index="4" instance=ExtResource( 3 )]
 position = Vector2( 48, 40 )
+
+[node name="Background" type="TileMap" parent="." index="5"]
+tile_set = ExtResource( 4 )
+cell_size = Vector2( 8, 8 )
+format = 1
+tile_data = PoolIntArray( 65535, 224, 0, 25, 224, 1, 131071, 224, 3, 65561, 224, 3, 196607, 224, 2, 131097, 224, 0, 262143, 224, 0, 196633, 224, 2, 327679, 224, 0, 262169, 224, 0, 393215, 224, 0, 327705, 224, 2, 458751, 224, 0, 393241, 224, 3, 524287, 224, 0, 458777, 224, 0, 589823, 224, 0, 524313, 224, 3, 655359, 224, 2, 589849, 224, 0, 720895, 224, 1, 655385, 224, 0, 786431, 224, 0, 720921, 224, 3, 851967, 224, 2, 786457, 224, 0, 917503, 224, 0, 851993, 224, 0, 983039, 224, 3, 917529, 224, 2, 1048575, 224, 1, 983065, 224, 3, 1114111, 224, 0, 1048601, 224, 0, 1179647, 224, 3, 1114137, 224, 3, 1245183, 224, 0, 1179673, 224, 1, 1310719, 224, 0, 1245184, 224, 0, 1245185, 224, 3, 1245186, 224, 0, 1245187, 224, 0, 1245188, 224, 0, 1245189, 224, 0, 1245190, 224, 0, 1245191, 224, 0, 1245192, 224, 0, 1245193, 224, 1, 1245194, 224, 0, 1245195, 224, 3, 1245196, 224, 0, 1245197, 224, 2, 1245198, 224, 0, 1245199, 224, 2, 1245200, 224, 0, 1245201, 224, 1, 1245202, 224, 1, 1245203, 224, 1, 1245204, 224, 0, 1245205, 224, 2, 1245206, 224, 0, 1245207, 224, 1, 1245208, 224, 2, 1245209, 224, 3 )
