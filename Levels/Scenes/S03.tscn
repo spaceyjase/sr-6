@@ -15,5 +15,5 @@ tile_data = PoolIntArray( 0, 107, 0, 1, 107, 1, 2, 107, 2, 3, 107, 3, 4, 107, 0,
 position = Vector2( 116, 60 )
 shape = SubResource( 1 )
 
-[node name="Battery" parent="." index="5" instance=ExtResource( 2 )]
+[node name="Battery" parent="." index="2" instance=ExtResource( 2 )]
 position = Vector2( 100, 82 )
