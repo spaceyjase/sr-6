@@ -10,22 +10,33 @@ namespace World
   {
     public const int HalfCellSize = 4;
     
-    private List<Level> levels = new List<Level>();
+    private readonly List<Level> levels = new List<Level>();
+    private HUD.HUD hud;
+    private int totalBatteries;
     
     public override void _Ready()
     {
+      // Get total number of batteries in the world
+      var batteries = GetTree().GetNodesInGroup("Battery");
+      totalBatteries = batteries.Count;
+      GD.Print($"Total batteries: {totalBatteries}");
+      
+      hud = GetNode<HUD.HUD>("CanvasLayer/HUD");
       var levelParent = GetNode<Node2D>("LevelParent");
       foreach (var level in levelParent.GetChildren<Level>())
       {
         levels.Add(level);
         level.Area.Connect("body_entered", this, nameof(OnLevelBodyEntered), new Array{ level });
+        level.Connect(nameof(Level.BatteryCollected), this, nameof(OnLevel_BatteryCollected));
       }
+      
+      // TODO: spawn player? ...or at least enable controls after intro animation.
       GetNode<Player.Player>("Player").Visible = true;
-      
-      // TODO: spawn player?
-      
-      var batteries = GetTree().GetNodesInGroup("Battery");
-      GD.Print($"Total batteries: {batteries.Count}");
+    }
+
+    private void OnLevel_BatteryCollected()
+    {
+      hud.UpdateScore(totalBatteries);
     }
 
     private void OnLevelBodyEntered(Node2D area, Level level)
@@ -34,6 +45,13 @@ namespace World
       var newBounds = level.GetUsedRect();
       newBounds.Position += level.Position;
       GetNode<Player.Player>("Player")?.SetCameraLimits(newBounds, level.GetCellSize());
+    }
+
+    private void OnPlayer_Dead()
+    {
+      GD.Print("Player died");
+      
+      // TODO: game over
     }
   }
 }

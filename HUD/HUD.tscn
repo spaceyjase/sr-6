@@ -1,0 +1,77 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://HUD/HUD_theme.tres" type="Theme" id=1]
+[ext_resource path="res://Assets/Textures/portrait.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Textures/battery_single.png" type="Texture" id=3]
+[ext_resource path="res://HUD/HUD.cs" type="Script" id=4]
+
+[node name="HUD" type="MarginContainer"]
+anchor_right = 1.0
+anchor_bottom = 0.04
+theme = ExtResource( 1 )
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+margin_right = 1024.0
+margin_bottom = 24.0
+
+[node name="BatteryDisplay" type="HBoxContainer" parent="HBoxContainer"]
+margin_right = 66.0
+margin_bottom = 24.0
+size_flags_horizontal = 2
+
+[node name="Battery" type="TextureRect" parent="HBoxContainer/BatteryDisplay"]
+margin_right = 10.0
+margin_bottom = 24.0
+rect_clip_content = true
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 3 )
+stretch_mode = 6
+
+[node name="BatteryLabel" type="Label" parent="HBoxContainer/BatteryDisplay"]
+margin_left = 14.0
+margin_right = 66.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 0.894118, 0.917647, 0.933333, 1 )
+custom_colors/font_color_shadow = Color( 0.0156863, 0.0156863, 0.0156863, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+text = "0 / 10"
+align = 2
+
+[node name="LifeCounter" type="HBoxContainer" parent="HBoxContainer"]
+margin_left = 514.0
+margin_right = 1024.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 2
+
+[node name="L1" type="TextureRect" parent="HBoxContainer/LifeCounter"]
+margin_left = 430.0
+margin_right = 454.0
+margin_bottom = 24.0
+texture = ExtResource( 2 )
+stretch_mode = 6
+flip_h = true
+
+[node name="L2" type="TextureRect" parent="HBoxContainer/LifeCounter"]
+margin_left = 458.0
+margin_right = 482.0
+margin_bottom = 24.0
+texture = ExtResource( 2 )
+stretch_mode = 6
+flip_h = true
+
+[node name="L3" type="TextureRect" parent="HBoxContainer/LifeCounter"]
+margin_left = 486.0
+margin_right = 510.0
+margin_bottom = 24.0
+texture = ExtResource( 2 )
+stretch_mode = 6
+flip_h = true

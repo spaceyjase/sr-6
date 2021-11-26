@@ -7,6 +7,8 @@ namespace Levels
   // Base level node for all others to inherit
   public class Level : Node2D
   {
+    [Signal] public delegate void BatteryCollected();
+    
     private TileMap world;
 
     public Level() { }
@@ -30,7 +32,7 @@ namespace Levels
 
     private void OnBatteryPickup()
     {
-      GD.Print("Battery collected!");
+      EmitSignal(nameof(BatteryCollected));
     }
   }
 }
