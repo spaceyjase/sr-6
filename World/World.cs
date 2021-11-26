@@ -22,6 +22,8 @@ namespace World
       GD.Print($"Total batteries: {totalBatteries}");
       
       hud = GetNode<HUD.HUD>("CanvasLayer/HUD");
+      hud.UpdateScore(totalBatteries);
+      
       var levelParent = GetNode<Node2D>("LevelParent");
       foreach (var level in levelParent.GetChildren<Level>())
       {

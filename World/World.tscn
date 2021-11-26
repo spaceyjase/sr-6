@@ -107,12 +107,8 @@ volume_db = -10.0
 autoplay = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-scale = Vector2( 2, 2 )
-transform = Transform2D( 2, 0, 0, 2, 0, 0 )
 
 [node name="HUD" parent="CanvasLayer" instance=ExtResource( 15 )]
-anchor_bottom = 0.0
-margin_bottom = 24.0
 
 [connection signal="Dead" from="Player" to="." method="OnPlayer_Dead"]
 [connection signal="LifeChanged" from="Player" to="CanvasLayer/HUD" method="OnPlayer_Life_Changed"]

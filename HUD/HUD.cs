@@ -7,7 +7,7 @@ namespace HUD
   {
     private Array<TextureRect> lifeCounter;
     private Label batteryLabel;
-    private int batteryCount;
+    private int batteryCount = -1;  // HACK for initial score update.
   
     public override void _Ready()
     {
@@ -17,7 +17,7 @@ namespace HUD
         GetNode<TextureRect>("HBoxContainer/LifeCounter/L2"),
         GetNode<TextureRect>("HBoxContainer/LifeCounter/L3")
       };
-      batteryLabel = GetNode<Label>("HBoxContainer/BatteryDisplay/BatteryLabel");
+      batteryLabel = GetNode<Label>("HBoxContainer/HBoxContainer/BatteryLabel");
     }
 
     private async void OnPlayer_Life_Changed(int value)
