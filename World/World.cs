@@ -15,6 +15,7 @@ namespace World
     private int totalBatteries;
 
     private AudioStreamPlayer pickupAudio;
+    private Particles2D pickupParticles;
     
     public override void _Ready()
     {
@@ -38,10 +39,13 @@ namespace World
       GetNode<Player.Player>("Player").Visible = true;
       
       pickupAudio = GetNode<AudioStreamPlayer>("PickupAudio");
+      pickupParticles = GetNode<Particles2D>("PickupParticles");
     }
 
-    private void OnLevel_BatteryCollected()
+    private void OnLevel_BatteryCollected(Vector2 position)
     {
+      pickupParticles.GlobalPosition = position;
+      pickupParticles.Emitting = true;
       pickupAudio.Play();
       pickupAudio.PitchScale = (float)GD.RandRange(0.9f, 1.1f);
       hud.UpdateScore(totalBatteries);

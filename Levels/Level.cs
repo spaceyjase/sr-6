@@ -30,9 +30,9 @@ namespace Levels
     public Rect2 GetUsedRect() => world.GetUsedRect();
     public Vector2 GetCellSize() => world.CellSize;
 
-    private void OnBatteryPickup()
+    private void OnBatteryPickup(Vector2 position)
     {
-      EmitSignal(nameof(BatteryCollected));
+      EmitSignal(nameof(BatteryCollected), position);
     }
   }
 }
