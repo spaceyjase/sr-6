@@ -32,6 +32,10 @@ namespace Player
     private RayCast2D raycastLeft;
     private RayCast2D raycastRight;
 
+    private AudioStreamPlayer jumpAudio;
+    private AudioStreamPlayer hurtAudio;
+    private AudioStreamPlayer deathAudio;
+
     private string animation;
 
     public string Animation
@@ -82,7 +86,7 @@ namespace Player
       }
     }
 
-    public bool IsInvulnerable
+    private bool IsInvulnerable
     {
       get => !invulnerableTimer.IsStopped();
       set
@@ -111,6 +115,10 @@ namespace Player
       invulnerableTimer = GetNode<Timer>("InvulnerableTimer");
       raycastLeft = GetNode<RayCast2D>("RayCast2DLeft");
       raycastRight = GetNode<RayCast2D>("RayCast2DRight");
+      
+      jumpAudio = GetNode<AudioStreamPlayer>("JumpAudio");
+      hurtAudio = GetNode<AudioStreamPlayer>("HurtAudio");
+      deathAudio = GetNode<AudioStreamPlayer>("DeathAudio");
 
       Life = initialLife;
 
@@ -172,11 +180,14 @@ namespace Player
       EmitSignal(nameof(LifeChanged), Life);
       if (!IsDead)
       {
+        hurtAudio.Play();
+        hurtAudio.PitchScale = (float)GD.RandRange(0.9f, 1.1f);
         cameraShake.AddTrauma(hurtShake);
         IsInvulnerable = true;
         return;
       }
 
+      deathAudio.Play();
       EmitSignal(nameof(Dead));
       SetProcess(false);
       SetPhysicsProcess(false);
@@ -184,5 +195,11 @@ namespace Player
 
     public bool IsDead => Life <= 0;
     public bool IsFacingLeft => sprite.FlipH;
+
+    public void Jump()
+    {
+      jumpAudio.Play();
+      jumpAudio.PitchScale = (float)GD.RandRange(0.9f, 1.1f);
+    }
   }
 }

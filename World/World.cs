@@ -13,6 +13,8 @@ namespace World
     private readonly List<Level> levels = new List<Level>();
     private HUD.HUD hud;
     private int totalBatteries;
+
+    private AudioStreamPlayer pickupAudio;
     
     public override void _Ready()
     {
@@ -34,10 +36,14 @@ namespace World
       
       // TODO: spawn player? ...or at least enable controls after intro animation.
       GetNode<Player.Player>("Player").Visible = true;
+      
+      pickupAudio = GetNode<AudioStreamPlayer>("PickupAudio");
     }
 
     private void OnLevel_BatteryCollected()
     {
+      pickupAudio.Play();
+      pickupAudio.PitchScale = (float)GD.RandRange(0.9f, 1.1f);
       hud.UpdateScore(totalBatteries);
     }
 

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Jump29.wav-fa925e0da898e0118f1521a968188358.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/Jump29.wav"
+dest_files=[ "res://.import/Jump29.wav-fa925e0da898e0118f1521a968188358.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

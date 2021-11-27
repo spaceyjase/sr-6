@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Assets/Textures/beamsocket.png" type="Texture" id=1]
 [ext_resource path="res://Props/Beam.cs" type="Script" id=2]
+[ext_resource path="res://Assets/Audio/beam.wav" type="AudioStream" id=3]
 
 [node name="Beam" type="KinematicBody2D" groups=["Enemies"]]
 collision_layer = 4
@@ -40,6 +41,12 @@ wait_time = 2.0
 [node name="StartTimer" type="Timer" parent="."]
 one_shot = true
 autostart = true
+
+[node name="Audio" type="AudioStreamPlayer2D" parent="."]
+position = Vector2( 4, 8 )
+stream = ExtResource( 3 )
+max_distance = 150.0
+bus = "Player"
 
 [connection signal="timeout" from="Timer" to="." method="OnTimer_Timeout"]
 [connection signal="timeout" from="StartTimer" to="." method="OnStartTimer_Timeout"]

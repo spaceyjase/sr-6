@@ -42,4 +42,7 @@ position = Vector2( 2.4, 8.73926 )
 scale = Vector2( 0.4, 1.42743 )
 points = PoolVector2Array( 4, 21.1994, 4, -5.42181 )
 
+[node name="Timer" parent="Beam" index="5"]
+wait_time = 1.8
+
 [editable path="Beam"]

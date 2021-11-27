@@ -50,6 +50,7 @@ namespace Player.States
         velocity.y = player.JumpSpeed;
         player.Animation = "jump_up";
         player.JumpCount++;
+        player.Jump();
       }
       else if (player.JumpCount < player.MaxJumps && jump)
       {
@@ -65,6 +66,7 @@ namespace Player.States
         {
           player.JumpCount++;
         }
+        player.Jump();
       }
 
       if (Input.IsActionJustReleased("jump") && velocity.y < -player.JumpSpeed * 0.5f)

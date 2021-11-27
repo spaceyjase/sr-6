@@ -16,6 +16,8 @@ namespace Props
 
     private bool isCasting;
 
+    private AudioStreamPlayer2D audio;
+
     private bool IsCasting
     {
       get => isCasting;
@@ -44,6 +46,7 @@ namespace Props
       tween.InterpolateProperty(line, "width", line.Width, 0, growthTime);
       tween.Start();
       collision.CallDeferred("set", "disabled", true);
+      audio.Stop();
     }
 
     private void Appear()
@@ -56,6 +59,8 @@ namespace Props
       tween.InterpolateProperty(line, "width", 0, initialWidth, growthTime);
       tween.Start();
       collision.CallDeferred("set", "disabled", false);
+      audio.Seek(0);
+      audio.Play();
     }
 
     public override void _Ready()
@@ -64,6 +69,7 @@ namespace Props
       tween = GetNode<Tween>("Tween");
       timer = GetNode<Timer>("Timer");
       collision = GetNode<CollisionShape2D>("CollisionShape2D");
+      audio = GetNode<AudioStreamPlayer2D>("Audio");
 
       endPosition = line.Points[1];
       initialWidth = line.Width;
@@ -86,6 +92,8 @@ namespace Props
       var shape = new RectangleShape2D();
       shape.Extents = new Vector2(vertical ? 2f : pos.x, vertical ? pos.y : 2f);
       collision.Shape = shape;
+
+      audio.Position = pos;
         
       // Not initially firing
       IsCasting = false;
