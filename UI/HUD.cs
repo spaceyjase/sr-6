@@ -7,9 +7,9 @@ namespace UI
   {
     private Array<TextureRect> lifeCounter;
     private Label batteryLabel;
-    private int batteryCount = -1;  // HACK for initial score update.
+    private int batteryCount = -1; // HACK for initial score update.
     private AnimationPlayer animationPlayer;
-  
+
     public override void _Ready()
     {
       lifeCounter = new Array<TextureRect>

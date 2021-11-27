@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Levels/Level.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Pickups/Battery/Battery.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Props/VerticalPlatform.tscn" type="PackedScene" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 108, 52 )
@@ -17,3 +18,12 @@ shape = SubResource( 1 )
 
 [node name="Battery" parent="." index="2" instance=ExtResource( 2 )]
 position = Vector2( 100, 82 )
+
+[node name="VerticalPlatform" parent="." index="3" instance=ExtResource( 3 )]
+position = Vector2( 112, 88 )
+speed = 3.0
+
+[node name="EndPosition" parent="VerticalPlatform" index="5"]
+position = Vector2( 0, 48 )
+
+[editable path="VerticalPlatform"]

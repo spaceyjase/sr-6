@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Assets/Textures/timerswitch.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Textures/tiles.png" type="Texture" id=2]
+[ext_resource path="res://Props/VerticalPlatform.cs" type="Script" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 12, 4 )
+
+[node name="VerticalPlatform" type="KinematicBody2D"]
+collision_mask = 2
+script = ExtResource( 3 )
+
+[node name="Begin" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 32, 0, 8, 8 )
+
+[node name="Middle" type="Sprite" parent="."]
+position = Vector2( 8, 0 )
+texture = ExtResource( 2 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 40, 72, 8, 8 )
+
+[node name="End" type="Sprite" parent="."]
+position = Vector2( 16, 0 )
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 32, 0, 8, 8 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 12, 4 )
+shape = SubResource( 1 )
+
+[node name="StartPosition" type="Position2D" parent="."]
+
+[node name="EndPosition" type="Position2D" parent="."]
+
+[node name="MoverTween" type="Tween" parent="."]

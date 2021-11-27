@@ -79,11 +79,11 @@ texture = ExtResource( 9 )
 [node name="S01" parent="LevelParent" instance=ExtResource( 3 )]
 position = Vector2( 152, 0 )
 
-[node name="S03" parent="LevelParent" instance=ExtResource( 6 )]
-position = Vector2( 328, 0 )
-
 [node name="S02" parent="LevelParent" instance=ExtResource( 5 )]
 position = Vector2( 328, 120 )
+
+[node name="S03" parent="LevelParent" instance=ExtResource( 6 )]
+position = Vector2( 328, 0 )
 
 [node name="S04" parent="LevelParent" instance=ExtResource( 7 )]
 position = Vector2( 328, 272 )
