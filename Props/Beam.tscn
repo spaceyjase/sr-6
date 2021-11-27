@@ -45,6 +45,7 @@ autostart = true
 [node name="Audio" type="AudioStreamPlayer2D" parent="."]
 position = Vector2( 4, 8 )
 stream = ExtResource( 3 )
+volume_db = -2.6
 max_distance = 150.0
 bus = "Player"
 

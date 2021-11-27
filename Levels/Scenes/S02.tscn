@@ -38,8 +38,8 @@ shape = SubResource( 2 )
 position = Vector2( 0, 32 )
 
 [node name="Line2D" parent="Beam" index="3"]
-position = Vector2( 2.4, 8.73926 )
-scale = Vector2( 0.4, 1.42743 )
+position = Vector2( 1.6, 8.73926 )
+scale = Vector2( 0.6, 1.42743 )
 points = PoolVector2Array( 4, 21.1994, 4, -5.42181 )
 
 [node name="Timer" parent="Beam" index="5"]
