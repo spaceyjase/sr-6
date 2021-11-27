@@ -1,9 +1,9 @@
 [gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://HUD/HUD_theme.tres" type="Theme" id=1]
+[ext_resource path="res://UI/UI_theme.tres" type="Theme" id=1]
 [ext_resource path="res://Assets/Textures/portrait.png" type="Texture" id=2]
 [ext_resource path="res://Assets/Textures/battery_single.png" type="Texture" id=3]
-[ext_resource path="res://HUD/HUD.cs" type="Script" id=4]
+[ext_resource path="res://UI/HUD.cs" type="Script" id=4]
 
 [sub_resource type="Animation" id=1]
 length = 0.001

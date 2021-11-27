@@ -11,7 +11,7 @@ namespace World
     public const int HalfCellSize = 4;
     
     private readonly List<Level> levels = new List<Level>();
-    private HUD.HUD hud;
+    private UI.HUD hud;
     private int totalBatteries;
 
     private AudioStreamPlayer pickupAudio;
@@ -24,7 +24,7 @@ namespace World
       totalBatteries = batteries.Count;
       GD.Print($"Total batteries: {totalBatteries}");
       
-      hud = GetNode<HUD.HUD>("CanvasLayer/HUD");
+      hud = GetNode<UI.HUD>("CanvasLayer/HUD");
       hud.UpdateScore(totalBatteries);
       
       var levelParent = GetNode<Node2D>("LevelParent");

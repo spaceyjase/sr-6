@@ -14,7 +14,7 @@
 [ext_resource path="res://Levels/Scenes/S06.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Levels/Scenes/S07.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Levels/Scenes/S08.tscn" type="PackedScene" id=14]
-[ext_resource path="res://HUD/HUD.tscn" type="PackedScene" id=15]
+[ext_resource path="res://UI/HUD.tscn" type="PackedScene" id=15]
 [ext_resource path="res://Assets/Audio/Powerup50.wav" type="AudioStream" id=16]
 [ext_resource path="res://Pickups/Battery/BatteryParticle.tscn" type="PackedScene" id=17]
 

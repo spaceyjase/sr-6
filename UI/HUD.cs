@@ -1,7 +1,7 @@
 using Godot;
 using Godot.Collections;
 
-namespace HUD
+namespace UI
 {
   public class HUD : MarginContainer
   {
