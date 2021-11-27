@@ -34,7 +34,10 @@ namespace HUD
         lifeCounter[index].Visible = value > index;
       }
 
-      animationPlayer.Play("update_life");
+      if (value != lifeCounter.Count)
+      {
+        animationPlayer.Play("update_life");
+      }
     }
 
     public void UpdateScore(int batteryTotal)

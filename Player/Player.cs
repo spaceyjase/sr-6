@@ -21,12 +21,14 @@ namespace Player
     [Export] private float wallSlideGravityMultiplier = 0.33f;
     [Export] private float wallJumpSpeed = 50f;
     [Export] private float hurtTimeout = 0.5f;
+    [Export] private float hurtShake = 0.1f;
 
     private Timer coyoteTimer;
     private Timer wallJumpTimer;
     private Timer invulnerableTimer;
     private AnimationPlayer animationPlayer;
     private Camera2D camera;
+    private CameraShake cameraShake;
     private RayCast2D raycastLeft;
     private RayCast2D raycastRight;
 
@@ -103,6 +105,7 @@ namespace Player
       animationPlayer = GetNode<AnimationPlayer>(nameof(AnimationPlayer));
       sprite = GetNode<Sprite>(nameof(Sprite));
       camera = GetNode<Camera2D>(nameof(Camera2D));
+      cameraShake = GetNode<CameraShake>(nameof(Camera2D));
       coyoteTimer = GetNode<Timer>("CoyoteTimer");
       wallJumpTimer = GetNode<Timer>("WallJumpTimer");
       invulnerableTimer = GetNode<Timer>("InvulnerableTimer");
@@ -169,6 +172,7 @@ namespace Player
       EmitSignal(nameof(LifeChanged), Life);
       if (!IsDead)
       {
+        cameraShake.AddTrauma(hurtShake);
         IsInvulnerable = true;
         return;
       }
