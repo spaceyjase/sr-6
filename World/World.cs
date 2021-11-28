@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Godot;
 using Levels;
 using Extensions;
@@ -9,37 +10,46 @@ namespace World
   public class World : Node2D
   {
     public const int HalfCellSize = 4;
-    
+
     private readonly List<Level> levels = new List<Level>();
     private UI.HUD hud;
     private int totalBatteries;
 
     private AudioStreamPlayer pickupAudio;
     private Particles2D pickupParticles;
-    
+
     public override void _Ready()
     {
       // Get total number of batteries in the world
       var batteries = GetTree().GetNodesInGroup("Battery");
       totalBatteries = batteries.Count;
       GD.Print($"Total batteries: {totalBatteries}");
-      
+
       hud = GetNode<UI.HUD>("CanvasLayer/HUD");
       hud.UpdateScore(totalBatteries);
-      
+
       var levelParent = GetNode<Node2D>("LevelParent");
       foreach (var level in levelParent.GetChildren<Level>())
       {
         levels.Add(level);
-        level.Area.Connect("body_entered", this, nameof(OnLevelBodyEntered), new Array{ level });
+        level.Area.Connect("body_entered", this, nameof(OnLevelBodyEntered), new Array { level });
         level.Connect(nameof(Level.BatteryCollected), this, nameof(OnLevel_BatteryCollected));
       }
-      
-      // TODO: spawn player? ...or at least enable controls after intro animation.
-      GetNode<Player.Player>("Player").Visible = true;
-      
+
+      ResetPlayer();
+
       pickupAudio = GetNode<AudioStreamPlayer>("PickupAudio");
       pickupParticles = GetNode<Particles2D>("PickupParticles");
+    }
+
+    private void ResetPlayer()
+    {
+      var player = GetNode<Player.Player>("Player");
+      player.Visible = true;
+      var start = levels.First((level => level.Name == "Start"));
+      var newBounds = start.GetUsedRect();
+      newBounds.Position += start.Position;
+      player.SetCameraLimits(newBounds, start.GetCellSize());
     }
 
     private void OnLevel_BatteryCollected(Vector2 position)
@@ -62,7 +72,7 @@ namespace World
     private void OnPlayer_Dead()
     {
       GD.Print("Player died");
-      
+
       // TODO: game over
     }
   }

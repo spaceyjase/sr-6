@@ -1,0 +1,201 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Levels/Level.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Props/Beam.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Pickups/Battery/Battery.tscn" type="PackedScene" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 80, 144 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 11.5, 2 )
+
+[node name="S14" instance=ExtResource( 1 )]
+
+[node name="World" parent="." index="0"]
+tile_data = PoolIntArray( 9, 12, 0, 10, 52, 0, 11, 52, 0, 12, 52, 0, 13, 52, 0, 14, 52, 0, 15, 52, 0, 16, 52, 0, 17, 52, 0, 18, 52, 0, 19, 50, 0, 65545, 53, 0, 65552, 87, 0, 65555, 53, 0, 131080, 110, 0, 131081, 49, 0, 131082, 90, 0, 131084, 75, 0, 131085, 72, 0, 131091, 109, 0, 131092, 51, 0, 196616, 152, 0, 196620, 73, 0, 196621, 74, 0, 196623, 84, 0, 196628, 40, 0, 262152, 152, 0, 262156, 51, 0, 262157, 52, 0, 262158, 52, 0, 262159, 52, 0, 262160, 12, 0, 327688, 152, 0, 327689, 121, 0, 327691, 59, 0, 327698, 168, 0, 327699, 161, 0, 327700, 107, 3, 327701, 106, 0, 393224, 152, 0, 393225, 107, 3, 393226, 97, 0, 393230, 67, 0, 393233, 62, 0, 393235, 151, 0, 393236, 107, 1, 393237, 106, 0, 458760, 152, 0, 458761, 107, 3, 458762, 107, 3, 458763, 78, 0, 458766, 67, 0, 458770, 122, 0, 458771, 151, 0, 458772, 107, 1, 458773, 106, 1, 524296, 159, 0, 524297, 153, 0, 524298, 153, 0, 524299, 159, 0, 524302, 67, 0, 524305, 158, 0, 524306, 153, 0, 524307, 153, 0, 524308, 153, 0, 524309, 159, 0, 589835, 152, 0, 589838, 67, 0, 589841, 152, 0, 589843, 151, 0, 655371, 152, 0, 655375, 66, 0, 655377, 152, 0, 655379, 151, 0, 720906, 44, 0, 720907, 152, 0, 720908, 70, 0, 720909, 167, 0, 720910, 162, 0, 720911, 153, 0, 720912, 153, 0, 720913, 156, 0, 720914, 154, 0, 720915, 157, 0, 786443, 152, 0, 786449, 152, 0, 851979, 152, 0, 851984, 60, 0, 851985, 152, 0, 917515, 152, 0, 917521, 152, 0, 983051, 159, 0, 983052, 153, 0, 983053, 153, 0, 983054, 110, 0, 983057, 152, 0, 1048587, 152, 0, 1048593, 152, 0, 1114123, 152, 0, 1114127, 69, 0, 1114129, 152, 0, 1114130, 43, 0, 1179659, 152, 0, 1179660, 78, 0, 1179663, 69, 0, 1179665, 152, 0, 1245195, 152, 0, 1245196, 153, 0, 1245200, 153, 0, 1245201, 152, 0, 1310731, 39, 0, 1310735, 69, 0, 1310736, 119, 0, 1310737, 152, 0, 1376267, 152, 0, 1376269, 97, 0, 1376271, 69, 0, 1376273, 152, 0, 1441803, 152, 0, 1441805, 12, 0, 1441806, 153, 0, 1441807, 51, 0, 1441809, 152, 0, 1507339, 152, 0, 1507342, 62, 0, 1507345, 152, 0, 1572875, 152, 0, 1572881, 152, 0, 1638411, 152, 0, 1638412, 58, 0, 1638413, 12, 0, 1638414, 153, 0, 1638415, 51, 0, 1638417, 159, 0, 1703947, 152, 0, 1703949, 61, 0, 1703950, 61, 0, 1703953, 152, 0, 1769483, 152, 0, 1769489, 152, 0, 1769490, 123, 0, 1835019, 152, 0, 1835020, 153, 0, 1835024, 153, 0, 1835025, 152, 0, 1835026, 148, 0, 1835027, 121, 0, 1900555, 152, 0, 1900561, 152, 0, 1900562, 111, 3, 1966090, 221, 0, 1966091, 152, 0, 1966093, 60, 0, 1966097, 152, 0, 1966098, 111, 1, 2031626, 145, 0, 2031627, 152, 0, 2031631, 12, 0, 2031632, 153, 0, 2031633, 152, 0, 2031634, 111, 0, 2097161, 200, 0, 2097162, 111, 2, 2097163, 152, 0, 2097169, 152, 0, 2097170, 111, 1, 2162698, 111, 1, 2162699, 152, 0, 2162702, 67, 0, 2162705, 158, 0, 2162706, 111, 3, 2162707, 199, 0, 2228224, 221, 0, 2228231, 169, 0, 2228232, 111, 0, 2228233, 196, 0, 2228234, 111, 1, 2228235, 152, 0, 2228238, 67, 0, 2228241, 152, 0, 2228242, 111, 2, 2228243, 195, 0, 2228244, 111, 1, 2228245, 111, 0, 2228246, 111, 3, 2228247, 111, 2, 2228248, 111, 1, 2228249, 111, 0, 2228250, 111, 0, 2293760, 111, 3, 2293761, 199, 0, 2293766, 162, 0, 2293767, 153, 0, 2293768, 153, 0, 2293769, 153, 0, 2293770, 153, 0, 2293771, 155, 0, 2293772, 153, 0, 2293773, 158, 0, 2293774, 67, 0, 2293777, 152, 0, 2293778, 111, 2, 2293779, 111, 1, 2293780, 225, 0, 2293781, 225, 1, 2293782, 225, 0, 2293783, 225, 2, 2293784, 225, 0, 2293785, 225, 0, 2293786, 111, 3, 2293787, 111, 3, 2359296, 111, 2, 2359297, 111, 3, 2359300, 169, 0, 2359301, 111, 3, 2359302, 152, 0, 2359303, 225, 3, 2359304, 225, 0, 2359305, 111, 0, 2359306, 111, 2, 2359307, 152, 0, 2359310, 67, 0, 2359313, 152, 0, 2359314, 111, 0, 2359315, 111, 2, 2359316, 225, 1, 2359317, 225, 0, 2359318, 225, 0, 2359319, 225, 0, 2359320, 225, 0, 2359321, 225, 0, 2359322, 225, 0, 2359323, 225, 0, 2424832, 111, 3, 2424833, 111, 0, 2424834, 111, 2, 2424835, 111, 2, 2424836, 111, 1, 2424837, 111, 0, 2424838, 152, 0, 2424839, 225, 0, 2424840, 111, 1, 2424841, 111, 1, 2424842, 111, 1, 2424843, 158, 0, 2424846, 67, 0, 2424849, 158, 0, 2424850, 111, 2, 2424851, 111, 0, 2424852, 225, 0, 2424853, 225, 2, 2424854, 225, 3, 2424855, 225, 0, 2424856, 225, 0, 2424857, 225, 0, 2424858, 225, 0, 2424859, 225, 0 )
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2( 112, 152 )
+shape = SubResource( 1 )
+
+[node name="Beam" parent="." index="2" instance=ExtResource( 2 )]
+position = Vector2( 96, 248 )
+
+[node name="CollisionShape2D" parent="Beam" index="0"]
+position = Vector2( 11.5, 4 )
+shape = SubResource( 2 )
+
+[node name="Start" parent="Beam" index="1"]
+region_rect = Rect2( 48, 0, 8, 8 )
+
+[node name="End" parent="Beam" index="2"]
+position = Vector2( 16, 0 )
+region_rect = Rect2( 32, 0, 8, 8 )
+
+[node name="Line2D" parent="Beam" index="3"]
+position = Vector2( 0, 6.13615 )
+scale = Vector2( 0.4, 0.724377 )
+points = PoolVector2Array( 57.5, -2.94894, 2.5, -2.94894 )
+
+[node name="Timer" parent="Beam" index="5"]
+wait_time = 0.8
+
+[node name="StartTimer" parent="Beam" index="6"]
+wait_time = 0.5
+
+[node name="Beam4" parent="." index="3" instance=ExtResource( 2 )]
+position = Vector2( 120, 120 )
+
+[node name="CollisionShape2D" parent="Beam4" index="0"]
+position = Vector2( 11.5, 4 )
+shape = SubResource( 2 )
+
+[node name="Start" parent="Beam4" index="1"]
+region_rect = Rect2( 48, 0, 8, 8 )
+
+[node name="End" parent="Beam4" index="2"]
+position = Vector2( 8, 0 )
+region_rect = Rect2( 32, 0, 8, 8 )
+
+[node name="Line2D" parent="Beam4" index="3"]
+position = Vector2( 0, 6.13615 )
+scale = Vector2( 0.4, 0.724377 )
+points = PoolVector2Array( 37.5, -2.94895, 2.5, -2.94894 )
+
+[node name="Timer" parent="Beam4" index="5"]
+wait_time = 1.5
+
+[node name="StartTimer" parent="Beam4" index="6"]
+wait_time = 0.8
+
+[node name="Beam2" parent="." index="4" instance=ExtResource( 2 )]
+position = Vector2( 104, 224 )
+
+[node name="CollisionShape2D" parent="Beam2" index="0"]
+position = Vector2( 11.5, 4 )
+shape = SubResource( 2 )
+
+[node name="Start" parent="Beam2" index="1"]
+region_rect = Rect2( 48, 0, 8, 8 )
+
+[node name="End" parent="Beam2" index="2"]
+position = Vector2( 16, 0 )
+region_rect = Rect2( 32, 0, 8, 8 )
+
+[node name="Line2D" parent="Beam2" index="3"]
+position = Vector2( 0, 6.13615 )
+scale = Vector2( 0.4, 0.724377 )
+points = PoolVector2Array( 57.5, -2.94894, 2.5, -2.94894 )
+
+[node name="Timer" parent="Beam2" index="5"]
+wait_time = 1.6
+
+[node name="Beam3" parent="." index="5" instance=ExtResource( 2 )]
+position = Vector2( 104, 152 )
+
+[node name="CollisionShape2D" parent="Beam3" index="0"]
+position = Vector2( 11.5, 4 )
+shape = SubResource( 2 )
+
+[node name="Start" parent="Beam3" index="1"]
+region_rect = Rect2( 48, 0, 8, 8 )
+
+[node name="End" parent="Beam3" index="2"]
+position = Vector2( 16, 0 )
+region_rect = Rect2( 32, 0, 8, 8 )
+
+[node name="Line2D" parent="Beam3" index="3"]
+position = Vector2( 0, 6.13615 )
+scale = Vector2( 0.4, 0.724377 )
+points = PoolVector2Array( 57.5, -2.94894, 2.5, -2.94894 )
+
+[node name="Timer" parent="Beam3" index="5"]
+wait_time = 1.9
+
+[node name="Beam6" parent="." index="6" instance=ExtResource( 2 )]
+position = Vector2( 136, 32 )
+
+[node name="CollisionShape2D" parent="Beam6" index="0"]
+position = Vector2( 11.5, 4 )
+shape = SubResource( 2 )
+
+[node name="Start" parent="Beam6" index="1"]
+region_rect = Rect2( 48, 0, 8, 8 )
+
+[node name="End" parent="Beam6" index="2"]
+position = Vector2( 16, 0 )
+region_rect = Rect2( 32, 0, 8, 8 )
+
+[node name="Line2D" parent="Beam6" index="3"]
+position = Vector2( 0, 6.13615 )
+scale = Vector2( 0.4, 0.724377 )
+points = PoolVector2Array( 57.5, -2.94894, 2.5, -2.94894 )
+
+[node name="Timer" parent="Beam6" index="5"]
+wait_time = 0.3
+
+[node name="Beam7" parent="." index="7" instance=ExtResource( 2 )]
+position = Vector2( 72, 32 )
+
+[node name="CollisionShape2D" parent="Beam7" index="0"]
+position = Vector2( 11.5, 4 )
+shape = SubResource( 2 )
+
+[node name="Start" parent="Beam7" index="1"]
+region_rect = Rect2( 48, 0, 8, 8 )
+
+[node name="End" parent="Beam7" index="2"]
+position = Vector2( 16, 0 )
+region_rect = Rect2( 32, 0, 8, 8 )
+
+[node name="Line2D" parent="Beam7" index="3"]
+position = Vector2( 0, 6.13615 )
+scale = Vector2( 0.4, 0.724377 )
+points = PoolVector2Array( 57.5, -2.94894, 2.5, -2.94894 )
+
+[node name="Beam5" parent="." index="8" instance=ExtResource( 2 )]
+position = Vector2( 112, 96 )
+
+[node name="End" parent="Beam5" index="2"]
+position = Vector2( 0, 16 )
+
+[node name="Line2D" parent="Beam5" index="3"]
+position = Vector2( 1.6, 3.04898 )
+scale = Vector2( 0.6, 0.707143 )
+points = PoolVector2Array( 4, 28.2136, 4, -2.9 )
+
+[node name="Beam8" parent="." index="9" instance=ExtResource( 2 )]
+position = Vector2( 104, 184 )
+
+[node name="Line2D" parent="Beam8" index="3"]
+position = Vector2( 1.6, 3.04898 )
+scale = Vector2( 0.6, 0.707143 )
+points = PoolVector2Array( 4, 16.9004, 4, -2.9 )
+
+[node name="StartTimer" parent="Beam8" index="6"]
+wait_time = 1.3
+
+[node name="Beam9" parent="." index="10" instance=ExtResource( 2 )]
+position = Vector2( 120, 184 )
+
+[node name="Line2D" parent="Beam9" index="3"]
+position = Vector2( 1.6, 3.04898 )
+scale = Vector2( 0.6, 0.707143 )
+points = PoolVector2Array( 4, 16.9004, 4, -2.9 )
+
+[node name="Timer" parent="Beam9" index="5"]
+wait_time = 1.5
+
+[node name="Battery" parent="." index="11" instance=ExtResource( 3 )]
+position = Vector2( 116, 26 )
+
+[editable path="Beam"]
+[editable path="Beam4"]
+[editable path="Beam2"]
+[editable path="Beam3"]
+[editable path="Beam6"]
+[editable path="Beam7"]
+[editable path="Beam5"]
+[editable path="Beam8"]
+[editable path="Beam9"]

@@ -256,7 +256,7 @@ margin_left = 8.0
 margin_top = 8.0
 margin_right = 72.0
 margin_bottom = 32.0
-text = "SCI-10"
+text = "SR-6"
 
 [node name="Message" type="Label" parent="."]
 modulate = Color( 0.647059, 0.662745, 0.666667, 1 )
@@ -265,7 +265,7 @@ margin_top = 32.0
 margin_right = 468.0
 margin_bottom = 144.0
 rect_scale = Vector2( 0.4, 0.4 )
-text = "Rescue astro by collecting batteries to provide energy for your ship.
+text = "Rescue astro by collecting batteries to provide energy for the ship.
 
 How fast can you escape?"
 autowrap = true
