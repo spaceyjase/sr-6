@@ -25,7 +25,7 @@ namespace Player.States
       
       if (!player.IsOnFloor())
       {
-        StateMachine?.ChangeState("Jump"); // TODO: air/falling
+        StateMachine?.ChangeState("Jump");
       }
 
       var right = Input.IsActionPressed("right");
