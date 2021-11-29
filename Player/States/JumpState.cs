@@ -86,7 +86,11 @@ namespace Player.States
       if (player.IsOnFloor() && jumpTimer.IsStopped())
       {
         StateMachine?.ChangeState(Mathf.IsEqualApprox(0f, direction) ? "Idle" : "Run");
-        // TODO: particles
+      }
+
+      if (player.Position.y > player.OutOfWorld)
+      {
+        StateMachine?.ChangeState("Dead");
       }
     }
   }

@@ -22,6 +22,7 @@ namespace Player
     [Export] private float wallJumpSpeed = 50f;
     [Export] private float hurtTimeout = 0.5f;
     [Export] private float hurtShake = 0.1f;
+    [Export] private int outOfWorld = 3000;
 
     private Timer coyoteTimer;
     private Timer wallJumpTimer;
@@ -195,6 +196,7 @@ namespace Player
 
     public bool IsDead => Life <= 0;
     public bool IsFacingLeft => sprite.FlipH;
+    public double OutOfWorld => outOfWorld;
 
     public void Jump()
     {
