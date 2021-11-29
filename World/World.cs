@@ -17,6 +17,7 @@ namespace World
 
     private AudioStreamPlayer pickupAudio;
     private Particles2D pickupParticles;
+    private AnimationPlayer faderAnimationPlayer;
 
     public override void _Ready()
     {
@@ -40,6 +41,8 @@ namespace World
 
       pickupAudio = GetNode<AudioStreamPlayer>("PickupAudio");
       pickupParticles = GetNode<Particles2D>("PickupParticles");
+      
+      faderAnimationPlayer = GetNode<AnimationPlayer>("CanvasLayer/FaderAnimationPlayer");
     }
 
     private void ResetPlayer()
@@ -71,9 +74,16 @@ namespace World
 
     private void OnPlayer_Dead()
     {
-      GD.Print("Player died");
-
       // TODO: game over
+      faderAnimationPlayer.Play("fade_in");
+    }
+
+    private void OnFaderAnimationPlayer_Animation_Finished(string animation)
+    {
+      if (animation == "fade_in")
+      {
+        GetTree().ChangeScene("res://UI/MainTitle.tscn");
+      }
     }
   }
 }
