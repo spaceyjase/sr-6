@@ -1,4 +1,5 @@
 using System;
+using System.Runtime.InteropServices.WindowsRuntime;
 using Godot;
 using Godot.Collections;
 
@@ -13,6 +14,8 @@ namespace UI
     private AnimationPlayer animationPlayer;
 
     private double timer;
+
+    private bool stopped;
 
     public override void _Ready()
     {
@@ -30,17 +33,31 @@ namespace UI
     public override void _Process(float delta)
     {
       base._Process(delta);
+
+      if (stopped) return;
       
       timer += delta;
-      
+
+      gameTimeLabel.Text = FormatTimer();
+    }
+
+    private string FormatTimer()
+    {
       // format output in minutes and hours from seconds
       var minutes = Math.Floor(timer / 60);
       var hours = (int)Math.Floor(minutes / 60);
       minutes %= 60;
-      gameTimeLabel.Text = $"{hours:00}:{minutes:00}:{timer % 60:00.00}";
+      
+      return $"{hours:00}:{minutes:00}:{timer % 60:00.00}";
     }
 
-    public double GameTime => timer;
+    public void Stop()
+    {
+      stopped = true;
+      SetProcess(false);
+    }
+
+    public string GameTimeAsString => FormatTimer();
 
     private async void OnPlayer_Life_Changed(int value)
     {

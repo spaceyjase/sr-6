@@ -265,7 +265,7 @@ margin_top = 32.0
 margin_right = 468.0
 margin_bottom = 144.0
 rect_scale = Vector2( 0.4, 0.4 )
-text = "Rescue astro by collecting batteries to provide energy for the ship.
+text = "Rescue astro by collecting batteries that provide energy for the ship.
 
 How fast can you escape?"
 autowrap = true

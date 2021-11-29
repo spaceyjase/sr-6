@@ -75,7 +75,13 @@ namespace World
     private void OnPlayer_Dead()
     {
       // TODO: game over
+      hud.Stop();
       faderAnimationPlayer.Play("fade_in");
+      
+      if (OS.IsDebugBuild())
+      {
+        GD.Print($"Game Over at {hud.GameTimeAsString}");
+      }
     }
 
     private void OnFaderAnimationPlayer_Animation_Finished(string animation)
