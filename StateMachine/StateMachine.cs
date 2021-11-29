@@ -73,11 +73,6 @@ namespace StateMachine
 
       CurrentState?.OnExit?.Invoke();
 
-      if (OS.IsDebugBuild())
-      {
-        GD.Print($"Transitioning from {CurrentState} to {newState}");
-      }
-
       CurrentState = newState;
       
       newState.OnEnter?.Invoke();
