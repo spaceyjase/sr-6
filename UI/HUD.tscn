@@ -1,9 +1,13 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://UI/UI_theme.tres" type="Theme" id=1]
 [ext_resource path="res://Assets/Textures/portrait.png" type="Texture" id=2]
 [ext_resource path="res://Assets/Textures/battery_single.png" type="Texture" id=3]
 [ext_resource path="res://UI/HUD.cs" type="Script" id=4]
+[ext_resource path="res://Assets/Fonts/Kenney Blocks.ttf" type="DynamicFontData" id=5]
+
+[sub_resource type="DynamicFont" id=4]
+font_data = ExtResource( 5 )
 
 [sub_resource type="Animation" id=1]
 length = 0.001
@@ -64,7 +68,38 @@ tracks/0/keys = {
 "values": [ Vector2( 1, 1 ), Vector2( 1.2, 1.2 ), Vector2( 1, 1 ) ]
 }
 
-[node name="HUD" type="MarginContainer"]
+[node name="HUD" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GameTime" type="MarginContainer" parent="."]
+anchor_right = 1.0
+margin_right = -512.0
+margin_bottom = 29.0
+rect_scale = Vector2( 2, 2 )
+theme = ExtResource( 1 )
+custom_constants/margin_right = 2
+custom_constants/margin_top = 5
+custom_constants/margin_left = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GameTimeLabel" type="Label" parent="GameTime"]
+margin_left = 2.0
+margin_top = 5.0
+margin_right = 510.0
+margin_bottom = 29.0
+grow_horizontal = 0
+custom_fonts/font = SubResource( 4 )
+text = "00:00:51.00"
+align = 2
+
+[node name="PlayerDetails" type="MarginContainer" parent="."]
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -76,29 +111,28 @@ theme = ExtResource( 1 )
 custom_constants/margin_right = 2
 custom_constants/margin_left = 2
 custom_constants/margin_bottom = 5
-script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="PlayerDetails"]
 margin_left = 2.0
 margin_right = 339.0
 margin_bottom = 31.0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="PlayerDetails/HBoxContainer"]
 margin_right = 253.0
 margin_bottom = 31.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Battery" type="TextureRect" parent="HBoxContainer/HBoxContainer"]
+[node name="Battery" type="TextureRect" parent="PlayerDetails/HBoxContainer/HBoxContainer"]
 margin_right = 20.0
 margin_bottom = 31.0
 texture = ExtResource( 3 )
 stretch_mode = 6
 
-[node name="BatteryLabel" type="Label" parent="HBoxContainer/HBoxContainer"]
+[node name="BatteryLabel" type="Label" parent="PlayerDetails/HBoxContainer/HBoxContainer"]
 margin_left = 24.0
 margin_top = 3.0
 margin_right = 253.0
@@ -110,13 +144,13 @@ custom_constants/shadow_offset_x = 2
 custom_constants/shadow_offset_y = 2
 text = "0 / 10"
 
-[node name="LifeCounter" type="HBoxContainer" parent="HBoxContainer"]
+[node name="LifeCounter" type="HBoxContainer" parent="PlayerDetails/HBoxContainer"]
 margin_left = 257.0
 margin_right = 337.0
 margin_bottom = 31.0
 rect_pivot_offset = Vector2( 80, 0 )
 
-[node name="L1" type="TextureRect" parent="HBoxContainer/LifeCounter"]
+[node name="L1" type="TextureRect" parent="PlayerDetails/HBoxContainer/LifeCounter"]
 margin_right = 24.0
 margin_bottom = 31.0
 rect_pivot_offset = Vector2( 12, 15 )
@@ -124,7 +158,7 @@ texture = ExtResource( 2 )
 stretch_mode = 6
 flip_h = true
 
-[node name="L2" type="TextureRect" parent="HBoxContainer/LifeCounter"]
+[node name="L2" type="TextureRect" parent="PlayerDetails/HBoxContainer/LifeCounter"]
 margin_left = 28.0
 margin_right = 52.0
 margin_bottom = 31.0
@@ -133,7 +167,7 @@ texture = ExtResource( 2 )
 stretch_mode = 6
 flip_h = true
 
-[node name="L3" type="TextureRect" parent="HBoxContainer/LifeCounter"]
+[node name="L3" type="TextureRect" parent="PlayerDetails/HBoxContainer/LifeCounter"]
 margin_left = 56.0
 margin_right = 80.0
 margin_bottom = 31.0
@@ -142,7 +176,7 @@ texture = ExtResource( 2 )
 stretch_mode = 6
 flip_h = true
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PlayerDetails"]
 anims/RESET = SubResource( 1 )
 anims/update_life = SubResource( 3 )
 anims/update_score = SubResource( 2 )
