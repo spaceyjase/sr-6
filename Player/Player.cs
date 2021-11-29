@@ -194,9 +194,22 @@ namespace Player
       SetPhysicsProcess(false);
     }
 
+    public bool OutOfBounds()
+    {
+      var result = Position.y > outOfWorld;
+      if (result)
+      {
+        deathAudio.Play();
+        EmitSignal(nameof(Dead));
+        SetProcess(false);
+        SetPhysicsProcess(false);
+      }
+
+      return result;
+    }
+
     public bool IsDead => Life <= 0;
     public bool IsFacingLeft => sprite.FlipH;
-    public double OutOfWorld => outOfWorld;
 
     public void Jump()
     {

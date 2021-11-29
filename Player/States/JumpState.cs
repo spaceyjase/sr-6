@@ -88,7 +88,7 @@ namespace Player.States
         StateMachine?.ChangeState(Mathf.IsEqualApprox(0f, direction) ? "Idle" : "Run");
       }
 
-      if (player.Position.y > player.OutOfWorld)
+      if (player.OutOfBounds())
       {
         StateMachine?.ChangeState("Dead");
       }
