@@ -16,6 +16,8 @@ namespace Player.States
 
     private void PhysicsProcess(float delta)
     {
+      if (!player.IsActive) return;
+      
       var velocity = player.Velocity;
       velocity.x = 0;
       velocity.y += player.Gravity * delta;

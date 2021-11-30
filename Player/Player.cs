@@ -77,6 +77,7 @@ namespace Player
     public bool IsTouchingRightWall => raycastRight.IsColliding();
     public float WallSlideGravityMultiplier => wallSlideGravityMultiplier;
     public float WallJumpSpeed => wallJumpSpeed;
+    private bool active;
 
     public bool WallJumping
     {
@@ -93,7 +94,7 @@ namespace Player
       set
       {
         if (!value) return;
-        
+
         invulnerableTimer.Start();
         var modulate = sprite.SelfModulate;
         modulate.a = 0.5f;
@@ -116,7 +117,7 @@ namespace Player
       invulnerableTimer = GetNode<Timer>("InvulnerableTimer");
       raycastLeft = GetNode<RayCast2D>("RayCast2DLeft");
       raycastRight = GetNode<RayCast2D>("RayCast2DRight");
-      
+
       jumpAudio = GetNode<AudioStreamPlayer>("JumpAudio");
       hurtAudio = GetNode<AudioStreamPlayer>("HurtAudio");
       deathAudio = GetNode<AudioStreamPlayer>("DeathAudio");
@@ -127,6 +128,8 @@ namespace Player
       Gravity = gravity;
       JumpSpeed = jumpSpeed;
       MaxJumps = maxJumps;
+
+      IsActive = true;
     }
 
     public void Move(Vector2 velocity, bool hurtOrDead = false)
@@ -176,7 +179,7 @@ namespace Player
     public void TakeDamage()
     {
       if (IsInvulnerable) return;
-      
+
       Life -= 1;
       EmitSignal(nameof(LifeChanged), Life);
       if (!IsDead)
@@ -215,6 +218,16 @@ namespace Player
     {
       jumpAudio.Play();
       jumpAudio.PitchScale = (float)GD.RandRange(0.9f, 1.1f);
+    }
+
+    public bool IsActive
+    {
+      get => active;
+      set
+      {
+        active = value;
+        Visible = active;
+      }
     }
   }
 }

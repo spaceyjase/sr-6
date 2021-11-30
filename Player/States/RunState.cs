@@ -17,6 +17,8 @@ namespace Player.States
 
     private void PhysicsProcess(float delta)
     {
+      if (!player.IsActive) return;
+      
       if (player.IsOnFloor())
       {
         player.StartCoyoteTimer();

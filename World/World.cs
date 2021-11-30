@@ -9,6 +9,8 @@ namespace World
 {
   public class World : Node2D
   {
+    [Export] private PackedScene worldCompleteScene;
+    
     public const int HalfCellSize = 4;
 
     private readonly List<Level> levels = new List<Level>();
@@ -18,19 +20,20 @@ namespace World
     private AudioStreamPlayer pickupAudio;
     private Particles2D pickupParticles;
     private AnimationPlayer faderAnimationPlayer;
-    
+
     private bool worldComplete = false;
+    private int batteries;
 
     public override void _Ready()
     {
       // Get total number of batteries in the world
-      var batteries = GetTree().GetNodesInGroup("Battery");
-      totalBatteries = batteries.Count;
+      var batteryNode = GetTree().GetNodesInGroup("Battery");
+      totalBatteries = batteryNode.Count;
       GD.Print($"Total batteries: {totalBatteries}");
 
       hud = GetNode<UI.HUD>("CanvasLayer/HUD");
       hud.UpdateScore(totalBatteries);
-
+      
       var levelParent = GetNode<Node2D>("LevelParent");
       foreach (var level in levelParent.GetChildren<Level>())
       {
@@ -43,7 +46,7 @@ namespace World
 
       pickupAudio = GetNode<AudioStreamPlayer>("PickupAudio");
       pickupParticles = GetNode<Particles2D>("PickupParticles");
-      
+
       faderAnimationPlayer = GetNode<AnimationPlayer>("CanvasLayer/FaderAnimationPlayer");
     }
 
@@ -64,6 +67,10 @@ namespace World
       pickupAudio.Play();
       pickupAudio.PitchScale = (float)GD.RandRange(0.9f, 1.1f);
       hud.UpdateScore(totalBatteries);
+
+      if (++batteries < totalBatteries) return;
+
+      worldComplete = true;
     }
 
     private void OnLevelBodyEntered(Node2D area, Level level)
@@ -78,7 +85,7 @@ namespace World
     {
       hud.Stop();
       faderAnimationPlayer.Play("fade_in_death");
-      
+
       if (OS.IsDebugBuild())
       {
         GD.Print($"Game Over at {hud.GameTimeAsString}");
@@ -97,7 +104,17 @@ namespace World
     {
       if (!worldComplete) return;
       
-      // TODO: implement world complete
+      // World complete!
+      GetNode<AnimationPlayer>("Spaceship/AnimationPlayer").Play("take_off");
+      GetNode<Player.Player>("Player").IsActive = false;
+      faderAnimationPlayer.Play("fade_in_world_complete");
+      
+      // Instance in a world complete scene
+      var instance = worldCompleteScene.Instance<WorldComplete>();
+      GetNode<CanvasLayer>("CanvasLayer").AddChild(instance);
+      instance.UpdateGameTime(hud.GameTimeAsString);
+
+      worldComplete = false;
     }
   }
 }

@@ -10,7 +10,7 @@
 [sub_resource type="Curve" id=4]
 _data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.254355, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.501742, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.749129, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=3]
+[sub_resource type="CurveTexture" id=12]
 curve = SubResource( 4 )
 
 [sub_resource type="ParticlesMaterial" id=5]
@@ -25,7 +25,7 @@ initial_velocity_random = 0.5
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 scale = 0.1
-scale_curve = SubResource( 3 )
+scale_curve = SubResource( 12 )
 
 [sub_resource type="Animation" id=6]
 resource_name = "dead"
