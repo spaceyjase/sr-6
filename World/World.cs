@@ -108,6 +108,7 @@ namespace World
       GetNode<AnimationPlayer>("Spaceship/AnimationPlayer").Play("take_off");
       GetNode<Player.Player>("Player").IsActive = false;
       faderAnimationPlayer.Play("fade_in_world_complete");
+      hud.Stop();
       
       // Instance in a world complete scene
       var instance = worldCompleteScene.Instance<WorldComplete>();
