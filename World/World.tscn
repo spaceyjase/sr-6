@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://Levels/Scenes/Start.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=2]
@@ -23,6 +23,7 @@
 [ext_resource path="res://Levels/Scenes/S12.tscn" type="PackedScene" id=21]
 [ext_resource path="res://Levels/Scenes/S13.tscn" type="PackedScene" id=22]
 [ext_resource path="res://Levels/Scenes/S14.tscn" type="PackedScene" id=23]
+[ext_resource path="res://Spaceship/Spaceship.tscn" type="PackedScene" id=24]
 
 [sub_resource type="Curve" id=2]
 _data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.254355, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.501742, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.749129, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
@@ -158,8 +159,11 @@ position = Vector2( 1024, 256 )
 [node name="S15" parent="LevelParent" instance=ExtResource( 23 )]
 position = Vector2( 800, -304 )
 
+[node name="Spaceship" parent="." instance=ExtResource( 24 )]
+position = Vector2( 64, 80 )
+
 [node name="Player" parent="." instance=ExtResource( 2 )]
-position = Vector2( 56, 80 )
+position = Vector2( 80, 80 )
 hurtShake = 0.2
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
@@ -189,6 +193,9 @@ bus = "Player"
 
 [node name="PickupParticles" parent="." instance=ExtResource( 17 )]
 
+[connection signal="body_entered" from="Spaceship/Area2D" to="." method="OnSpaceship_Body_Entered"]
 [connection signal="Dead" from="Player" to="." method="OnPlayer_Dead"]
 [connection signal="LifeChanged" from="Player" to="CanvasLayer/HUD" method="OnPlayer_Life_Changed"]
 [connection signal="animation_finished" from="CanvasLayer/FaderAnimationPlayer" to="." method="OnFaderAnimationPlayer_Animation_Finished"]
+
+[editable path="Spaceship"]

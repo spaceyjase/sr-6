@@ -18,6 +18,8 @@ namespace World
     private AudioStreamPlayer pickupAudio;
     private Particles2D pickupParticles;
     private AnimationPlayer faderAnimationPlayer;
+    
+    private bool worldComplete = false;
 
     public override void _Ready()
     {
@@ -90,6 +92,13 @@ namespace World
       {
         GetTree().ChangeScene("res://UI/MainTitle.tscn");
       }
+    }
+
+    private void OnSpaceship_Body_Entered(Node area)
+    {
+      if (!worldComplete) return;
+      
+      // TODO: implement world complete
     }
   }
 }

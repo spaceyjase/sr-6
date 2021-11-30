@@ -4,23 +4,24 @@
 [ext_resource path="res://Spaceship/SpaceshipParticles2D.tscn" type="PackedScene" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 8, 16 )
+extents = Vector2( 4, 6 )
 
 [node name="Spaceship" type="Node2D"]
 
 [node name="Sprite" type="Sprite" parent="."]
-scale = Vector2( 2, 2 )
+position = Vector2( 0, -7 )
 texture = ExtResource( 1 )
-centered = false
 region_enabled = true
 region_rect = Rect2( 48, 0, 16, 16 )
 
 [node name="Particles2D" parent="Sprite" instance=ExtResource( 2 )]
-position = Vector2( 8, 12 )
+position = Vector2( 0, 5 )
 emitting = false
 
 [node name="Area2D" type="Area2D" parent="."]
+position = Vector2( 0, -6 )
+collision_layer = 8
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2( 16, 16 )
 shape = SubResource( 1 )
