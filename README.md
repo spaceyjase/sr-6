@@ -6,4 +6,4 @@ https://itch.io/jam/go-godot-jam-2
 
 Source code for SR-6.
 
-### Thats all!
+### That's all!
