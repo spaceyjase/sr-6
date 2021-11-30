@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://World/WorldEnvironment.tres" type="Environment" id=1]
 [ext_resource path="res://Assets/Textures/8x8dot.png" type="Texture" id=2]
@@ -26,6 +26,8 @@ orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 scale = 0.1
 scale_curve = SubResource( 12 )
+
+[sub_resource type="StyleBoxEmpty" id=15]
 
 [sub_resource type="Animation" id=6]
 resource_name = "dead"
@@ -202,6 +204,38 @@ tracks/1/keys = {
 "values": [ Color( 1.1, 1.1, 1.1, 1 ) ]
 }
 
+[sub_resource type="Animation" id=13]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("PlayButton:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=14]
+resource_name = "idle"
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("PlayButton:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1.4, 1.4, 1.4, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+
 [node name="MainTitle" type="Control"]
 theme = ExtResource( 3 )
 script = ExtResource( 5 )
@@ -274,16 +308,18 @@ __meta__ = {
 }
 
 [node name="PlayButton" type="Button" parent="."]
-modulate = Color( 0.356863, 0.568627, 0.172549, 1 )
+modulate = Color( 0.894118, 0.917647, 0.933333, 1 )
 margin_left = 8.0
-margin_top = 96.0
+margin_top = 88.0
 margin_right = 66.0
-margin_bottom = 126.0
+margin_bottom = 118.0
 rect_scale = Vector2( 0.5, 0.5 )
 focus_next = NodePath(".")
 focus_previous = NodePath(".")
+custom_colors/font_color_focus = Color( 0.894118, 0.917647, 0.933333, 1 )
 custom_colors/font_color = Color( 0.894118, 0.917647, 0.933333, 1 )
 custom_colors/font_color_hover = Color( 0.894118, 0.917647, 0.933333, 1 )
+custom_styles/focus = SubResource( 15 )
 text = "Play"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -312,7 +348,7 @@ texture = ExtResource( 6 )
 offset = Vector2( 0, -4.5 )
 flip_h = true
 hframes = 15
-frame = 3
+frame = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "run"
@@ -322,5 +358,10 @@ anims/idle = SubResource( 8 )
 anims/jump_down = SubResource( 9 )
 anims/jump_up = SubResource( 10 )
 anims/run = SubResource( 11 )
+
+[node name="ButtonAnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "idle"
+anims/RESET = SubResource( 13 )
+anims/idle = SubResource( 14 )
 
 [connection signal="pressed" from="PlayButton" to="." method="OnPlayButton_Pressed"]
