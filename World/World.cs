@@ -76,9 +76,8 @@ namespace World
 
     private void OnPlayer_Dead()
     {
-      // TODO: game over
       hud.Stop();
-      faderAnimationPlayer.Play("fade_in");
+      faderAnimationPlayer.Play("fade_in_death");
       
       if (OS.IsDebugBuild())
       {
@@ -88,7 +87,7 @@ namespace World
 
     private void OnFaderAnimationPlayer_Animation_Finished(string animation)
     {
-      if (animation == "fade_in")
+      if (animation == "fade_in_death")
       {
         GetTree().ChangeScene("res://UI/MainTitle.tscn");
       }
